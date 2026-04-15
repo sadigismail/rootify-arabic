@@ -1,0 +1,140 @@
+**Unify Collapsible Section Headers — Color, Alignment, Typography, Default Collapsed**
+
+Refine the section headers/cards for:
+
+* Generate Practice
+* Usage & Examples
+* Verb Measures I–X
+
+## Goal
+
+Make these sections feel like one consistent UI system.
+
+---
+
+## Required changes
+
+### 1. Use one unified header style
+
+Apply the SAME header design to all three sections:
+
+* same background color
+* same border treatment
+* same padding
+* same title alignment
+* same icon alignment
+
+Do not let one look darker, larger, or styled differently from the others.
+
+---
+
+### 2. Center-align the header content
+
+For all three section headers:
+
+* center the title block horizontally
+* center Arabic + English subtitle together
+* keep icon aligned consistently
+* remove awkward right-heavy visual weight
+
+The header should feel balanced, not pushed to one side.
+
+---
+
+### 3. Increase title font size
+
+Make the section titles clearly larger and easier to scan.
+
+Apply to:
+
+* Generate Practice
+* Usage & Examples
+* Verb Measures I–X
+
+Also slightly strengthen the Arabic subtitle and English subtitle so they match the rest of the app’s hierarchy.
+
+---
+
+### 4. Default state = collapsed
+
+All three sections should load collapsed by default.
+
+That means:
+
+* content hidden on initial load
+* only header visible
+* user clicks to expand
+
+Apply this to:
+
+* Usage & Examples
+* Verb Measures I–X
+* any similar lower-page expandable teaching sections
+
+If Generate Practice is using the same collapsible pattern, keep it visually unified, but only collapse it if that matches current intended behavior.
+
+---
+
+### 5. Make collapse indicator consistent
+
+Use one consistent chevron / expand icon style across these sections.
+
+Rules:
+
+* same size
+* same position
+* same rotation behavior on expand/collapse
+
+---
+
+### 6. Improve spacing
+
+Reduce unnecessary empty vertical space around collapsed sections.
+
+Collapsed headers should sit cleanly one after another without huge blank areas.
+
+---
+
+### 7. Typography consistency
+
+Use one typography system across all section headers:
+
+* main title = larger, bold
+* Arabic subtitle = clear and readable
+* English subtitle = readable, not tiny, not faded
+
+No weak gray text.
+
+---
+
+## Visual result expected
+
+After this change:
+
+* the three sections look like one family
+* same color and structure
+* centered and balanced
+* titles bigger
+* collapsed by default
+* cleaner and more professional
+
+---
+
+## Do not change
+
+* section content
+* logic inside expanded content
+* data
+* analysis behavior
+
+This is presentation + default collapse behavior only.
+
+---
+
+## Deliverable
+
+Provide:
+
+1. screenshot of all three collapsed headers together
+2. confirmation they use one shared style
+3. confirmation default collapsed behavior is active

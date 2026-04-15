@@ -1,0 +1,265 @@
+ROOTIFY — PHASE 2
+Goal: make all visible behavior consume the central morphology engine and stop using local legacy classification logic.
+
+MISSION
+
+The central `analyzeToken()` engine is now built. Phase 2 is to make it the single source of truth for:
+
+* tooltips
+* conjugation
+* action-chain extraction
+* UI badges and labels
+* API-facing token analysis
+
+CORE RULE
+
+No frontend component and no helper path may independently classify Arabic tokens anymore if `analyzeToken()` can provide that information.
+
+Any old local rule that still decides:
+
+* noun vs verb
+* form
+* verb class
+* tense/aspect
+* person/number/gender
+  must be removed, bypassed, or rewritten to consume the central engine.
+
+PRIORITY ORDER
+
+1. Tooltip refactor
+
+2. Conjugation refactor
+
+3. Action-chain refactor
+
+4. English-support restriction
+
+5. Regression expansion
+
+6. Browser validation
+
+7. TOOLTIP REFACTOR
+
+Make tooltip rendering fully data-driven from `analyzeToken()` output.
+
+Required:
+
+* tooltip receives a normalized analysis object only
+* tooltip does not run its own POS logic
+* tooltip does not run its own form logic
+* tooltip does not guess verb class
+* tooltip does not patch based on passage-specific English
+
+Tooltip should only render:
+
+* POS
+* form if verb
+* verb class if verb
+* features
+* gloss
+* confidence/source when needed
+
+Required tooltip contract:
+
+* exactly one POS line
+* exactly one gloss line
+* no duplicate morph lines
+* no empty tooltip shell
+* no “half-rendered” tooltip
+
+Examples:
+
+* رأى → Verb / Form I / defective / past 3ms / saw
+* اليوم → Noun / definite singular / day
+* ترمب → Proper noun / personal name / Trump
+
+2. CONJUGATION REFACTOR
+
+Conjugation must consume the central engine + rule-based conjugation generator.
+
+Required:
+
+* conjugation table is driven by lemma + form + verbClass from the engine
+* do not derive conjugation from ad hoc UI logic
+* do not infer defective/hollow behavior separately in the table layer
+
+For lexicon verbs:
+
+* full trusted conjugation may be generated from lemma/form/class rules
+* if irregular, lexicon may override specific cells
+
+For unknown verbs:
+
+* only generate if confidence is sufficient
+* otherwise mark as estimated or unavailable
+
+Must support:
+
+* active past
+* active present
+* future
+* imperative
+* passive past
+* passive present
+
+Critical validation cases:
+
+* رأى → يرى
+* قال → يقول
+* سعى → يسعى
+* شدّ → يشدّ
+* سأل → يسأل
+* فتح → يفتح
+
+3. ACTION-CHAIN REFACTOR
+
+Action-chain extraction must use engine output, not legacy heuristics.
+
+Required:
+
+* verb candidates come from `analyzeToken()`
+* noun candidates come from `analyzeToken()`
+* proper names come from engine + entity support
+* prepositional phrases may still use syntax helpers, but not POS guessing
+
+Hard rule:
+No token should be marked as the chain verb unless central analysis says verb with medium or high confidence.
+
+This should reduce errors like:
+
+* nouns being treated as verbs
+* names being treated as verbs
+* generic verbal nouns becoming the action head incorrectly
+
+4. ENGLISH SUPPORT RESTRICTION
+
+English is support only.
+
+Allowed English roles:
+
+* gloss display
+* named-entity support
+* contradiction warning
+* low-confidence ambiguity assistance
+
+Forbidden English roles:
+
+* assigning verb form
+* assigning tense
+* assigning verb class
+* overriding strong Arabic noun/verb locks
+* passage-specific patching
+
+Implement an explicit confidence policy:
+
+If Arabic confidence is high:
+
+* English cannot override POS
+
+If Arabic confidence is medium:
+
+* English may only warn or confirm
+
+If Arabic confidence is low:
+
+* English may help choose between limited candidates, but result must be marked as assisted
+
+5. LEGACY LOGIC AUDIT
+
+Find and remove all remaining duplicate logic for:
+
+* prefix-based POS checks outside engine
+* suffix-based POS checks outside engine
+* old SAL/override branches that classify directly
+* tooltip-only classification paths
+* action-chain-only classification paths
+* conjugation-only verb-type rules
+
+Produce a short audit note listing:
+
+* file
+* old logic removed or bypassed
+* replacement path via `analyzeToken()`
+
+6. TEST EXPANSION
+
+Add tests in four groups:
+
+A. Engine-to-tooltip consistency
+For each token, tooltip must match engine:
+
+* pos
+* form
+* verbClass
+* gloss count exactly one
+
+B. Engine-to-conjugation consistency
+Conjugation must reflect engine class:
+
+* defective verbs stay defective
+* hollow verbs stay hollow
+* doubled verbs stay doubled
+* hamzated verbs stay hamzated
+
+C. Engine-to-action-chain consistency
+Sentences with obvious action heads:
+
+* كتب ترمب الرسالة
+* خرجوا من المدينة
+* وجاء فانس بعد ثلاثة أيام
+* حثّ الرئيس الناخبين
+* صوتوا لأوربان
+
+D. Arabic-priority safety tests
+English must not force wrong POS when Arabic is strong:
+
+* اليوم must stay noun
+* الحكومة must stay noun
+* التصويت must stay noun
+* ترمب must stay proper noun
+* كتب must become verb in verbal context
+* حمل must remain context-sensitive, not hard-patched
+
+7. BROWSER VALIDATION CASES
+
+Test these in live browser after implementation:
+
+* رأى
+* قال
+* سعى
+* شدّ
+* سأل
+* فتح
+* كتب
+* صوتوا
+* اخرجوا
+* اليوم
+* الحكومة
+* ترمب
+* أوربان
+* فانس
+
+ACCEPTANCE CRITERIA
+
+Phase 2 is complete only if all are true:
+
+1. Tooltips no longer classify independently
+2. Conjugation uses engine output centrally
+3. Action-chain uses engine verb decisions
+4. English cannot overturn a strong Arabic decision
+5. No duplicate or empty tooltip fields
+6. Known difficult verbs render consistently across UI
+7. The same token gets the same core analysis everywhere in the app
+
+IMPORTANT WARNING
+
+Do not solve Phase 2 by adding more local patches.
+Do not fix one passage.
+Do not add special-case passage overrides.
+
+This phase is successful only if the same central engine result appears consistently in:
+
+* tooltip
+* conjugation
+* action chain
+* API

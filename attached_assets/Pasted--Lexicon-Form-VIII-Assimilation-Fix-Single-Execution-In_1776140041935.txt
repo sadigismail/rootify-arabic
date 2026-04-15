@@ -1,0 +1,184 @@
+**Lexicon + Form VIII Assimilation Fix (Single Execution Instruction)**
+
+Implement the following as one controlled update for Rootify.
+
+---
+
+## Part 1 — Add the verb زَحَمَ to the lexicon
+
+### Problem
+
+Rootify currently fails to recognize **زَحَمَ** and reports that it is not in the lexicon.
+
+### Required fix
+
+Add **زَحَمَ** as a recognized verb entry.
+
+### Minimum required entry behavior
+
+Support normal recognition for:
+
+* زَحَمَ
+* root: ز ح م
+* basic lookup by Arabic input
+* normal display in Rootify
+* normal conjugation generation through the existing engine
+
+### Include at least:
+
+* lemma with diacritics: **زَحَمَ**
+* plain lemma: **زحم**
+* root: **ز ح م**
+* verb class: **sound** unless your existing lexicon structure uses another valid internal label
+* basic English gloss such as:
+
+  * crowd
+  * press against
+  * pack tightly
+  * congest
+
+Use the project’s current lexicon structure and naming conventions. Do not invent a new schema.
+
+### Important
+
+If your lexicon supports attested vs theoretical derived forms, mark entries consistently with current project rules.
+
+---
+
+## Part 2 — Fix Form VIII assimilation for roots beginning with د / ذ / ز
+
+### Problem
+
+Form VIII (افتعل) must not remain transparent for roots whose first radical is:
+
+* د
+* ذ
+* ز
+
+The infixed **ت** of Form VIII should assimilate according to standard Arabic morphology.
+
+### Required rule
+
+For triliteral roots beginning with:
+
+* د
+* ذ
+* ز
+
+the Form VIII pattern must reflect assimilation of the **ت** and produce the correct assimilated stem/output rather than a transparent **افتعل** sequence.
+
+### Do NOT allow incorrect transparent outputs like:
+
+* ازتحم
+* ادترس
+* اذتكر
+
+Those are not acceptable as final displayed/generated Form VIII forms.
+
+### Expected behavior
+
+The VIII stem/output should reflect the assimilated/doubled consonant pattern where appropriate.
+
+### Apply this fix to:
+
+* Form VIII lemma generation
+* derived form display
+* any generated VIII-family outputs that depend on the stem
+* any place where Rootify presents Form VIII as a derived form card or family item
+
+---
+
+## Part 3 — Test roots
+
+Test the assimilation rule with roots such as:
+
+* **درس**
+* **ذكر**
+* **زحم**
+
+### Important lexicon rule
+
+If a derived form is theoretical in your system, follow existing project behavior:
+
+* prefer attested outputs when available
+* do not invent attested status where none exists
+* but the generated morphological shape must still respect the assimilation rule
+
+---
+
+## Part 4 — Recognition + display requirements for زحم
+
+After this update, the following must work:
+
+### Arabic lookup
+
+Searching:
+
+* زحم
+* زَحَمَ
+
+must recognize the verb and open its analysis instead of saying it is missing.
+
+### Verb page
+
+The verb should display normally in:
+
+* Student Mode
+* Teacher Mode
+* conjugation tables
+* root family / derived forms area
+* practice engine if it uses available current-verb data
+
+### Form VIII handling
+
+If Rootify shows Form VIII for زحم, it must use the corrected assimilation rule and not a transparent broken form.
+
+---
+
+## Part 5 — Do not change
+
+Do not modify:
+
+* pronoun ordering
+* unrelated verb classes
+* English search logic
+* UI layout
+* tooltip architecture
+* practice engine behavior except where it depends on recognizing زحم correctly
+
+This is a targeted lexicon + morphology correction.
+
+---
+
+## Part 6 — Validation checklist
+
+Confirm all of the following:
+
+1. **زحم** is now recognized by direct Arabic lookup
+2. the verb opens normally in Rootify
+3. Form VIII generation for roots beginning with **د / ذ / ز** no longer shows transparent broken outputs
+4. existing verbs are unaffected
+5. all current tests still pass
+6. add/adjust tests specifically for:
+
+   * lexicon recognition of **زحم**
+   * Form VIII assimilation for **درس**
+   * Form VIII assimilation for **ذكر**
+   * Form VIII assimilation behavior for **زحم** if generated/displayed in system scope
+
+---
+
+## Deliverable
+
+At the end, provide:
+
+1. files changed
+2. exact lexicon entry added for **زحم**
+3. summary of the Form VIII assimilation rule implemented
+4. before/after examples for:
+
+   * درس
+   * ذكر
+   * زحم
+5. tests added or updated
+6. confirmation that no unrelated logic was changed

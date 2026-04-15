@@ -1,0 +1,52 @@
+SmartRoot Arabic v1 morphology engine is now working correctly for core Form I classes, including regular, assimilated, hollow, defective, and doubled verbs. The next phase is not to add many new forms yet. The next phase is to stabilize and productize Form I so it becomes usable as a real tool. Focus only on these tasks, and do not add database, auth, deployment work, or fancy UI.
+
+Task 1: Build a simple usable root-input workflow for SmartRoot. Add a minimal internal test page or route where a user can enter a root such as كتب, وعد, باع, دعا, وقف, ردّ and see: normalized root, classification, gloss, confidence, past, present, future, imperative, masdar, active participle, passive participle, and short explanation. Keep the UI very simple and readable.
+
+Task 2: Expand Form I test coverage significantly before adding new features. Add more roots for each class and verify the engine does not break. At minimum add these tests:
+- regular: كتب، فتح، جلس، دخل
+- assimilated: وعد، وقف، وصل، وزن
+- hollow: قال، باع، زار، نام، صام، قام
+- defective: دعا، رمى، سعى، حمى، مشى
+- doubled: ردّ، مدّ، شدّ، جرّ، عضّ
+For each test root, verify classification plus at least these forms where applicable: 3ms past, 2ms past, 3ms present, 2ms present, 2ms imperative, 2fs imperative, 2mp imperative, masdar, active participle, and passive participle. Strengthen assertions so wrong endings like imperative final vowels cannot slip through again.
+
+Task 3: Add a clear confidence/source layer to every response. The engine must explicitly label whether the result came from:
+- lexicon
+- pattern inference
+- rule fallback
+Return both a user-friendly confidence field and a technical source field. Example:
+"confidence": "high",
+"source": "lexicon"
+Use:
+- high = lexicon-backed and supported
+- medium = class rules + known pattern logic
+- low = fallback / incomplete / uncertain
+
+Task 4: Add pronunciation-ready output for the main forms. Do not build full audio yet unless trivial. Instead return clean vocalized Arabic strings ready for TTS and optionally a transliteration field if easy to support. At minimum include pronunciation-ready values for:
+- 3ms past
+- 3ms present
+- 2ms imperative
+- masdar
+- active participle
+- passive participle
+This is to prepare the engine for later audio support.
+
+Task 5: Improve the explanation layer so each result teaches the user why the form behaves the way it does. Keep explanations deterministic, short, and morphology-based. Examples:
+- assimilated: initial و drops in present and imperative
+- hollow: middle weak radical contracts in citation form and reduces before suffixes
+- defective: final weak radical changes in citation form and imperative
+- doubled: doubled consonant splits before some suffixes
+Return a short explanation string and, if helpful, a compact bullet-like list of rule notes in JSON.
+
+Task 6: Keep the engine backend-first and cleanly modular. Do not begin Forms II–X yet. Do not expand UI significantly. Do not introduce AI generation for morphology. Correctness and testability are the priority.
+
+Task 7: When finished, show me:
+1. the files changed
+2. the newly added test roots
+3. one sample JSON output each for:
+   - وقف
+   - نام
+   - رمى
+   - شدّ
+4. confirmation that confidence/source and pronunciation-ready fields are included
+5. test pass count

@@ -1,0 +1,155 @@
+**UI Polish — Teaching Notes + Conjugation Header Hierarchy Fix**
+
+## 1. Teaching Notes Card — Fix Width + Font Size
+
+### Problem
+
+* Card is too wide → hard to read
+* Font is too small → low visual importance
+
+### Required Fix
+
+#### A. Reduce width (critical)
+
+* Limit max width of the card:
+
+```css
+.teaching-notes-card {
+  max-width: 900px;
+  margin: 0 auto;
+}
+```
+
+* Keep it centered (DO NOT full-width stretch)
+
+---
+
+#### B. Increase font size (important)
+
+Arabic notes:
+
+```css
+.teaching-notes-card .notes-ar {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  font-weight: 500;
+}
+```
+
+English notes:
+
+```css
+.teaching-notes-card .notes-en {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #4b5563;
+}
+```
+
+---
+
+#### C. Increase title prominence
+
+```css
+.teaching-notes-card .title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+```
+
+Arabic title (if separate):
+
+```css
+.teaching-notes-card .title-ar {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+```
+
+---
+
+## 2. Conjugation Table Headers — Fix Hierarchy
+
+### Problem
+
+Headers like:
+
+* past / present / future / imperative
+
+are too small and visually weaker than the conjugated forms → WRONG hierarchy
+
+---
+
+### Required Fix
+
+#### A. Make headers clearly stronger
+
+```css
+.conj-header {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+}
+```
+
+Arabic header:
+
+```css
+.conj-header-ar {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+```
+
+---
+
+#### B. Improve spacing + clarity
+
+```css
+.conj-header-cell {
+  padding: 10px 6px;
+  letter-spacing: 0.3px;
+}
+```
+
+---
+
+#### C. Slight background contrast (very subtle)
+
+```css
+.conj-header-row {
+  background: #f9fafb;
+}
+```
+
+DO NOT over-style — keep clean.
+
+---
+
+## 3. Visual Hierarchy Rule (IMPORTANT)
+
+Final balance must be:
+
+1. **Arabic conjugation (main verb forms)** → strongest
+2. **Headers (past/present/etc.)** → clearly visible, structured
+3. **English + transliteration** → secondary
+
+NOT flat like now.
+
+---
+
+## 4. What NOT to do
+
+* ❌ Do NOT make headers bigger than Arabic verbs
+* ❌ Do NOT keep full-width Teaching Notes
+* ❌ Do NOT keep small gray text
+
+---
+
+## 5. Deliverable
+
+Agent must provide:
+
+1. Before/after screenshot of Teaching Notes
+2. Before/after screenshot of conjugation headers
+3. Confirmation of new font sizes applied

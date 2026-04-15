@@ -1,0 +1,258 @@
+**Phase 11.5 — Interactive Intelligence Layer (Single Execution Instruction)**
+
+Precondition:
+Before implementing, confirm no pending UI or layout refactors are in progress. This phase must build strictly on the current stable UI without restructuring existing components.
+
+---
+
+## Scope
+
+Implement an **interactive learning layer** on top of the current Rootify system.
+
+This is a **UI/presentation-only enhancement**.
+
+---
+
+## Frozen layers — DO NOT MODIFY
+
+* morphology engine
+* conjugation generation logic
+* Arabic search flow
+* English grouped search logic
+* pronoun ordering
+* Student/Teacher mode structure
+* existing payload contracts (unless a minimal read-only adapter is required)
+
+No refactoring of core systems.
+
+---
+
+## Goal
+
+Add controlled interactivity so users can:
+
+* explore root families
+* understand forms via hover/click
+* visually notice patterns
+* receive short instructional guidance
+
+---
+
+## Build order (STRICT)
+
+### 1. Clickable Root Panel
+
+* Make root (e.g., ك – ت – ب) clickable in hero section
+* On click → open compact panel/modal
+
+Panel shows:
+
+* related verbs by root (grouped by form if possible)
+* Arabic lemma (dominant)
+* optional English gloss
+* each item clickable → navigates to verb page
+
+Rules:
+
+* use only attested/root-indexed data
+* no invented verbs
+* preserve Student/Teacher mode when navigating
+
+Empty state:
+
+* “No additional root-family verbs available yet”
+
+---
+
+### 2. Reusable Tooltip System
+
+Create ONE reusable tooltip/popover component (do not duplicate logic).
+
+Requirements:
+
+* works on hover (desktop)
+* works on click/tap (mobile)
+* no flicker
+* compact and readable
+* does not block major content
+* closes cleanly
+
+Suggested components:
+
+* MorphologyTooltip
+* InteractiveFormCell
+* DerivedFormTooltip
+* RootFamilyPanel
+
+---
+
+### 3. Conjugation Cell Intelligence
+
+Attach tooltips to conjugation cells.
+
+Tooltip content (2–4 short lines max):
+
+* tense/mood label
+* item type
+* verb class note (if relevant)
+* one short learner insight
+
+Examples:
+
+* “Present tense form”
+* “Hollow verb: watch weak-letter alternation”
+* “Imperative reflects shortened/jussive behavior”
+
+Rules:
+
+* no paragraphs
+* no technical/debug wording
+* do not change table structure or order
+
+---
+
+### 4. Participles / Masdar / Derived Nouns Intelligence
+
+Extend tooltips to:
+
+* active participle
+* passive participle
+* verbal noun
+* derived nouns
+* verb family entries (if applicable)
+
+Tooltip examples:
+
+* “Active participle — doer of the action”
+* “Passive participle — receiver of the action”
+* “Verbal noun — names the action/process”
+* “Often a place noun”
+
+Keep concise and educational.
+
+---
+
+### 5. Pattern-Aware Highlighting
+
+Add subtle highlighting for:
+
+* root letters
+* weak letters
+* added pattern letters
+* doubled consonants
+* hamza-sensitive behavior
+
+Rules:
+
+* subtle only (no color overload)
+* must not reduce readability
+* no legends or debug overlays
+
+Mode behavior:
+
+* Student Mode → minimal highlighting
+* Teacher Mode → richer highlighting
+
+---
+
+### 6. Smart Instructional Notes
+
+Add short contextual notes triggered by interaction.
+
+Examples:
+
+* “Hollow verb: watch middle weak letter changes”
+* “Form II often conveys intensive/causative meaning”
+* “Transitive verb — expect an object”
+* “Verbal noun helps recognize abstract actions”
+
+Rules:
+
+* concise only
+* learner-friendly language
+* no internal terminology
+* avoid repetition
+
+Use a reusable note builder based on:
+
+* verb class
+* form
+* item type
+
+---
+
+## Mode Behavior
+
+### Student Mode
+
+* lighter tooltips
+* minimal highlighting
+* limited instructional notes
+
+### Teacher Mode
+
+* richer tooltips
+* stronger highlighting
+* more explicit grammar info
+
+Must remain informative, not cluttered.
+
+---
+
+## Accessibility
+
+* hover must also work via click/tap
+* stable interaction (no flicker)
+* tooltips must not go off-screen
+* easy to close
+* usable on touch devices
+
+---
+
+## Tests (REQUIRED)
+
+### Root Interaction
+
+* clicking root opens panel
+* clicking verb navigates correctly
+* empty state works
+* mode persists if supported
+
+### Tooltip Behavior
+
+* appears on hover/click
+* works for conjugation + derived forms
+* content adapts correctly
+
+### Mode Behavior
+
+* Student Mode lighter
+* Teacher Mode richer
+
+### Regression Safety
+
+* no changes to conjugation ordering
+* no changes to morphology output
+* Arabic search unchanged
+* English grouped search unchanged
+
+---
+
+## Deliverable
+
+Provide:
+
+1. files changed
+2. interactive components added
+3. root panel behavior summary
+4. tooltip system summary
+5. highlighting rules summary
+6. tests added
+7. confirmation frozen layers were untouched
+
+---
+
+## Critical Constraint
+
+Do NOT turn this into an engine refactor.
+This phase must remain a controlled UI interaction layer built on top of the stable system.

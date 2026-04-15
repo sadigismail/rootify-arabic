@@ -1,0 +1,172 @@
+**Targeted Fix — Hamzated Verb Readability / Highlight Cleanup**
+
+The general contrast pass is done, but there is still a readability problem with some verbs, especially **hamzated verbs** like **قرأ**.
+
+This does NOT look like a general text-color issue anymore. It appears to be caused by the **interactive/pattern highlighting layer** making the word visually noisy.
+
+## Goal
+
+Clean up the visual rendering of hamzated verbs in Teacher Mode so forms like **قرأ / أقرأ / يقرأ / اقرأ** remain easy to read.
+
+This is a **targeted UI rendering fix only**.
+
+---
+
+## Do not change
+
+* morphology engine
+* conjugation logic
+* hamza rules
+* search logic
+* pronoun order
+* layout structure
+
+Do not change the underlying Arabic output.
+Only adjust how highlighting is applied visually.
+
+---
+
+## Main diagnosis
+
+Teacher Mode currently combines multiple visual signals on the same word:
+
+* root-letter coloring
+* weak-letter coloring
+* doubled/underline styling
+* other pattern-aware emphasis
+
+For hamzated verbs, this can overload the word visually because **hamza and its seat are already graphically complex**.
+
+The result is cluttered rendering, especially in:
+
+* قرأ
+* أقرأ
+* يقرأ
+* اقرأ
+* passive or derived forms containing hamza
+
+---
+
+## Required fix
+
+### 1. Reduce highlight stacking on hamzated letters
+
+If a letter contains hamza behavior, do not stack multiple strong highlight styles on the same glyph.
+
+For hamza-related positions:
+
+* use only one visual emphasis at a time
+* avoid combining color + underline + extra emphasis on the same character
+
+### 2. Prioritize readability over analysis
+
+For hamzated verbs, the Arabic word must remain visually clean first.
+
+If necessary:
+
+* reduce highlight intensity
+* simplify highlight type
+* suppress one lower-priority highlight layer
+
+### 3. Special handling for hamzated verbs
+
+Create a small rendering rule for hamzated forms:
+
+* hamza-bearing letters should not become visually crowded
+* seat changes should not create messy overlay effects
+* the word should still look like normal readable Arabic first, annotated Arabic second
+
+---
+
+## Highlight priority rule
+
+When multiple highlight types compete, apply this priority:
+
+1. readability of the Arabic form
+2. root visibility
+3. special morphological emphasis
+4. decorative/secondary analysis
+
+If preserving all highlights makes the form harder to read, remove the lower-priority one.
+
+---
+
+## Specific rendering rules for hamzated verbs
+
+### A. Do not over-accent hamza
+
+If hamza is present:
+
+* avoid aggressive color on the hamza itself
+* avoid underline directly through or under hamza if it looks messy
+* avoid multi-color splitting across the same letter cluster
+
+### B. Keep base Arabic glyph dark and stable
+
+The main Arabic form should remain dark and strong.
+Highlighting should feel secondary, not dominant.
+
+### C. Derived forms with initial hamza
+
+Forms like:
+
+* أقرأ
+* أُقْرِئَ
+* اِقرأ
+
+must remain visually balanced.
+Do not let initial hamza styling overpower the word.
+
+---
+
+## Mode behavior
+
+### Student Mode
+
+For hamzated verbs, keep highlighting extremely minimal or off.
+
+### Teacher Mode
+
+Allow highlighting, but simplify it for hamzated forms:
+
+* fewer simultaneous highlight types
+* lower visual intensity
+* cleaner rendering
+
+---
+
+## Where to check
+
+Audit these areas specifically with hamzated verbs like **قرأ**:
+
+* conjugation table cells
+* imperative
+* present/future forms
+* passive forms
+* verb family cards
+* derived noun cards
+* participle/masdar cards
+* tooltips if highlighted text appears there too
+
+---
+
+## Success criteria
+
+After the fix:
+
+* hamzated forms are immediately readable
+* Teacher Mode still teaches pattern information
+* highlighting no longer makes forms like **قرأ** look cluttered
+* Student Mode remains clean
+* no underlying Arabic text changes
+
+---
+
+## Deliverable
+
+Provide:
+
+1. what highlight rules were adjusted
+2. whether hamzated verbs now use a simplified highlight strategy
+3. screenshots using **قرأ** as the test case
+4. confirmation that no morphology or text-generation logic changed

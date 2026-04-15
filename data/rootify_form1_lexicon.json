@@ -1,0 +1,917 @@
+{
+  "verbs": {
+    "_meta": {
+      "version": "1.0",
+      "description": "Rootify Form I Arabic verb lexicon. Lookup key = undiacritized surface past-3ms form. Supports regular, assimilated, hollow, defective, and doubled verb types.",
+      "bab_names": {
+        "nasara": "فَعَلَ/يَفْعُلُ  (a-u) — e.g. نَصَرَ/يَنْصُرُ",
+        "daraba": "فَعَلَ/يَفْعِلُ  (a-i) — e.g. ضَرَبَ/يَضْرِبُ",
+        "fataha": "فَعَلَ/يَفْعَلُ  (a-a) — e.g. فَتَحَ/يَفْتَحُ",
+        "alima": "فَعِلَ/يَفْعَلُ  (i-a) — e.g. عَلِمَ/يَعْلَمُ",
+        "karuma": "فَعُلَ/يَفْعُلُ  (u-u) — e.g. كَرُمَ/يَكْرُمُ",
+        "hasiba": "فَعِلَ/يَفْعِلُ  (i-i) — e.g. حَسِبَ/يَحْسِبُ (rare)",
+        "mithal": "assimilated root, R1=و drops in present",
+        "jawwaf-waw": "hollow root R2=و; past contracts to ALEF",
+        "jawwaf-ya": "hollow root R2=ي; past contracts to ALEF",
+        "naqis-waw": "defective root R3=و; past ends in ALEF",
+        "naqis-ya": "defective root R3=ي; past ends in ALEF",
+        "mudaaf": "doubled root R2=R3; contracted with shadda"
+      }
+    },
+    "كتب": {
+      "past": "كَتَبَ",
+      "present": "يَكْتُبُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to write"
+    },
+    "نصر": {
+      "past": "نَصَرَ",
+      "present": "يَنْصُرُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to help / support"
+    },
+    "دخل": {
+      "past": "دَخَلَ",
+      "present": "يَدْخُلُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to enter"
+    },
+    "خرج": {
+      "past": "خَرَجَ",
+      "present": "يَخْرُجُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to exit / go out"
+    },
+    "طلب": {
+      "past": "طَلَبَ",
+      "present": "يَطْلُبُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to seek / request"
+    },
+    "قتل": {
+      "past": "قَتَلَ",
+      "present": "يَقْتُلُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to kill"
+    },
+    "درس": {
+      "past": "دَرَسَ",
+      "present": "يَدْرُسُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to study"
+    },
+    "حضر": {
+      "past": "حَضَرَ",
+      "present": "يَحْضُرُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to attend / be present"
+    },
+    "نظر": {
+      "past": "نَظَرَ",
+      "present": "يَنْظُرُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to look / examine"
+    },
+    "شكر": {
+      "past": "شَكَرَ",
+      "present": "يَشْكُرُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to thank"
+    },
+    "نشر": {
+      "past": "نَشَرَ",
+      "present": "يَنْشُرُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to spread / publish"
+    },
+    "ذكر": {
+      "past": "ذَكَرَ",
+      "present": "يَذْكُرُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to mention / remember"
+    },
+    "سكن": {
+      "past": "سَكَنَ",
+      "present": "يَسْكُنُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to reside / dwell"
+    },
+    "حكم": {
+      "past": "حَكَمَ",
+      "present": "يَحْكُمُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to rule / judge"
+    },
+    "سكت": {
+      "past": "سَكَتَ",
+      "present": "يَسْكُتُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to be silent"
+    },
+    "أكل": {
+      "past": "أَكَلَ",
+      "present": "يَأْكُلُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to eat"
+    },
+    "عصر": {
+      "past": "عَصَرَ",
+      "present": "يَعْصُرُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to squeeze / press"
+    },
+    "نسخ": {
+      "past": "نَسَخَ",
+      "present": "يَنْسُخُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to copy / transcribe"
+    },
+    "حفر": {
+      "past": "حَفَرَ",
+      "present": "يَحْفُرُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to dig"
+    },
+    "عمر": {
+      "past": "عَمَرَ",
+      "present": "يَعْمُرُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to inhabit / flourish"
+    },
+    "جلس": {
+      "past": "جَلَسَ",
+      "present": "يَجْلِسُ",
+      "bab": "daraba",
+      "pattern": "فَعَلَ يَفْعِلُ",
+      "gloss": "to sit"
+    },
+    "ضرب": {
+      "past": "ضَرَبَ",
+      "present": "يَضْرِبُ",
+      "bab": "daraba",
+      "pattern": "فَعَلَ يَفْعِلُ",
+      "gloss": "to hit / strike"
+    },
+    "حمل": {
+      "past": "حَمَلَ",
+      "present": "يَحْمِلُ",
+      "bab": "daraba",
+      "pattern": "فَعَلَ يَفْعِلُ",
+      "gloss": "to carry"
+    },
+    "نزل": {
+      "past": "نَزَلَ",
+      "present": "يَنْزِلُ",
+      "bab": "daraba",
+      "pattern": "فَعَلَ يَفْعِلُ",
+      "gloss": "to descend / stay"
+    },
+    "رجع": {
+      "past": "رَجَعَ",
+      "present": "يَرْجِعُ",
+      "bab": "daraba",
+      "pattern": "فَعَلَ يَفْعِلُ",
+      "gloss": "to return"
+    },
+    "كسب": {
+      "past": "كَسَبَ",
+      "present": "يَكْسِبُ",
+      "bab": "daraba",
+      "pattern": "فَعَلَ يَفْعِلُ",
+      "gloss": "to earn / gain"
+    },
+    "غفر": {
+      "past": "غَفَرَ",
+      "present": "يَغْفِرُ",
+      "bab": "daraba",
+      "pattern": "فَعَلَ يَفْعِلُ",
+      "gloss": "to forgive"
+    },
+    "قدر": {
+      "past": "قَدَرَ",
+      "present": "يَقْدِرُ",
+      "bab": "daraba",
+      "pattern": "فَعَلَ يَفْعِلُ",
+      "gloss": "to be able / to measure"
+    },
+    "صبر": {
+      "past": "صَبَرَ",
+      "present": "يَصْبِرُ",
+      "bab": "daraba",
+      "pattern": "فَعَلَ يَفْعِلُ",
+      "gloss": "to be patient"
+    },
+    "خدم": {
+      "past": "خَدَمَ",
+      "present": "يَخْدِمُ",
+      "bab": "daraba",
+      "pattern": "فَعَلَ يَفْعِلُ",
+      "gloss": "to serve"
+    },
+    "سجد": {
+      "past": "سَجَدَ",
+      "present": "يَسْجُدُ",
+      "bab": "nasara",
+      "pattern": "فَعَلَ يَفْعُلُ",
+      "gloss": "to prostrate"
+    },
+    "نكر": {
+      "past": "نَكَرَ",
+      "present": "يَنْكِرُ",
+      "bab": "daraba",
+      "pattern": "فَعَلَ يَفْعِلُ",
+      "gloss": "to deny / reject"
+    },
+    "فتح": {
+      "past": "فَتَحَ",
+      "present": "يَفْتَحُ",
+      "bab": "fataha",
+      "pattern": "فَعَلَ يَفْعَلُ",
+      "gloss": "to open"
+    },
+    "ذهب": {
+      "past": "ذَهَبَ",
+      "present": "يَذْهَبُ",
+      "bab": "fataha",
+      "pattern": "فَعَلَ يَفْعَلُ",
+      "gloss": "to go"
+    },
+    "سأل": {
+      "past": "سَأَلَ",
+      "present": "يَسْأَلُ",
+      "bab": "fataha",
+      "pattern": "فَعَلَ يَفْعَلُ",
+      "gloss": "to ask"
+    },
+    "قرأ": {
+      "past": "قَرَأَ",
+      "present": "يَقْرَأُ",
+      "bab": "fataha",
+      "pattern": "فَعَلَ يَفْعَلُ",
+      "gloss": "to read"
+    },
+    "صنع": {
+      "past": "صَنَعَ",
+      "present": "يَصْنَعُ",
+      "bab": "fataha",
+      "pattern": "فَعَلَ يَفْعَلُ",
+      "gloss": "to make / manufacture"
+    },
+    "جمع": {
+      "past": "جَمَعَ",
+      "present": "يَجْمَعُ",
+      "bab": "fataha",
+      "pattern": "فَعَلَ يَفْعَلُ",
+      "gloss": "to collect / gather"
+    },
+    "قطع": {
+      "past": "قَطَعَ",
+      "present": "يَقْطَعُ",
+      "bab": "fataha",
+      "pattern": "فَعَلَ يَفْعَلُ",
+      "gloss": "to cut"
+    },
+    "رفع": {
+      "past": "رَفَعَ",
+      "present": "يَرْفَعُ",
+      "bab": "fataha",
+      "pattern": "فَعَلَ يَفْعَلُ",
+      "gloss": "to raise / lift"
+    },
+    "منع": {
+      "past": "مَنَعَ",
+      "present": "يَمْنَعُ",
+      "bab": "fataha",
+      "pattern": "فَعَلَ يَفْعَلُ",
+      "gloss": "to prevent"
+    },
+    "بعث": {
+      "past": "بَعَثَ",
+      "present": "يَبْعَثُ",
+      "bab": "fataha",
+      "pattern": "فَعَلَ يَفْعَلُ",
+      "gloss": "to send / resurrect"
+    },
+    "سبح": {
+      "past": "سَبَحَ",
+      "present": "يَسْبَحُ",
+      "bab": "fataha",
+      "pattern": "فَعَلَ يَفْعَلُ",
+      "gloss": "to swim / praise God"
+    },
+    "نجح": {
+      "past": "نَجَحَ",
+      "present": "يَنْجَحُ",
+      "bab": "fataha",
+      "pattern": "فَعَلَ يَفْعَلُ",
+      "gloss": "to succeed"
+    },
+    "فرح": {
+      "past": "فَرِحَ",
+      "present": "يَفْرَحُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to rejoice / be happy"
+    },
+    "نجا": {
+      "past": "نَجَا",
+      "present": "يَنْجُو",
+      "bab": "naqis-waw",
+      "pattern": "فَعَا يَفْعُو",
+      "gloss": "to be saved / escape"
+    },
+    "علم": {
+      "past": "عَلِمَ",
+      "present": "يَعْلَمُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to know"
+    },
+    "عمل": {
+      "past": "عَمِلَ",
+      "present": "يَعْمَلُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to work / do"
+    },
+    "فهم": {
+      "past": "فَهِمَ",
+      "present": "يَفْهَمُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to understand"
+    },
+    "شرب": {
+      "past": "شَرِبَ",
+      "present": "يَشْرَبُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to drink"
+    },
+    "لعب": {
+      "past": "لَعِبَ",
+      "present": "يَلْعَبُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to play"
+    },
+    "ضحك": {
+      "past": "ضَحِكَ",
+      "present": "يَضْحَكُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to laugh"
+    },
+    "سمع": {
+      "past": "سَمِعَ",
+      "present": "يَسْمَعُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to hear"
+    },
+    "لبس": {
+      "past": "لَبِسَ",
+      "present": "يَلْبَسُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to wear"
+    },
+    "حمد": {
+      "past": "حَمِدَ",
+      "present": "يَحْمَدُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to praise"
+    },
+    "قبل": {
+      "past": "قَبِلَ",
+      "present": "يَقْبَلُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to accept"
+    },
+    "كره": {
+      "past": "كَرِهَ",
+      "present": "يَكْرَهُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to hate / dislike"
+    },
+    "حفظ": {
+      "past": "حَفِظَ",
+      "present": "يَحْفَظُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to memorize / preserve"
+    },
+    "ركب": {
+      "past": "رَكِبَ",
+      "present": "يَرْكَبُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to ride / mount"
+    },
+    "جهل": {
+      "past": "جَهِلَ",
+      "present": "يَجْهَلُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to be ignorant"
+    },
+    "وجل": {
+      "past": "وَجِلَ",
+      "present": "يَوْجَلُ",
+      "bab": "alima",
+      "pattern": "فَعِلَ يَفْعَلُ",
+      "gloss": "to fear / be afraid"
+    },
+    "كرم": {
+      "past": "كَرُمَ",
+      "present": "يَكْرُمُ",
+      "bab": "karuma",
+      "pattern": "فَعُلَ يَفْعُلُ",
+      "gloss": "to be noble / generous"
+    },
+    "عظم": {
+      "past": "عَظُمَ",
+      "present": "يَعْظُمُ",
+      "bab": "karuma",
+      "pattern": "فَعُلَ يَفْعُلُ",
+      "gloss": "to be great / magnificent"
+    },
+    "حسن": {
+      "past": "حَسُنَ",
+      "present": "يَحْسُنُ",
+      "bab": "karuma",
+      "pattern": "فَعُلَ يَفْعُلُ",
+      "gloss": "to be good / beautiful"
+    },
+    "قبح": {
+      "past": "قَبُحَ",
+      "present": "يَقْبُحُ",
+      "bab": "karuma",
+      "pattern": "فَعُلَ يَفْعُلُ",
+      "gloss": "to be ugly / foul"
+    },
+    "صعب": {
+      "past": "صَعُبَ",
+      "present": "يَصْعُبُ",
+      "bab": "karuma",
+      "pattern": "فَعُلَ يَفْعُلُ",
+      "gloss": "to be difficult"
+    },
+    "شرف": {
+      "past": "شَرُفَ",
+      "present": "يَشْرُفُ",
+      "bab": "karuma",
+      "pattern": "فَعُلَ يَفْعُلُ",
+      "gloss": "to be honourable"
+    },
+    "ضعف": {
+      "past": "ضَعُفَ",
+      "present": "يَضْعُفُ",
+      "bab": "karuma",
+      "pattern": "فَعُلَ يَفْعُلُ",
+      "gloss": "to be weak"
+    },
+    "جمل": {
+      "past": "جَمُلَ",
+      "present": "يَجْمُلُ",
+      "bab": "karuma",
+      "pattern": "فَعُلَ يَفْعُلُ",
+      "gloss": "to be beautiful / comely"
+    },
+    "كبر": {
+      "past": "كَبُرَ",
+      "present": "يَكْبُرُ",
+      "bab": "karuma",
+      "pattern": "فَعُلَ يَفْعُلُ",
+      "gloss": "to be great / old"
+    },
+    "كثر": {
+      "past": "كَثُرَ",
+      "present": "يَكْثُرُ",
+      "bab": "karuma",
+      "pattern": "فَعُلَ يَفْعُلُ",
+      "gloss": "to be many / abundant"
+    },
+    "حسب": {
+      "past": "حَسِبَ",
+      "present": "يَحْسِبُ",
+      "bab": "hasiba",
+      "pattern": "فَعِلَ يَفْعِلُ",
+      "gloss": "to reckon / consider"
+    },
+    "نعم": {
+      "past": "نَعِمَ",
+      "present": "يَنْعِمُ",
+      "bab": "hasiba",
+      "pattern": "فَعِلَ يَفْعِلُ",
+      "gloss": "to live in comfort / enjoy"
+    },
+    "وعد": {
+      "past": "وَعَدَ",
+      "present": "يَعِدُ",
+      "bab": "mithal",
+      "pattern": "وَفَعَلَ يَفِلُ",
+      "gloss": "to promise"
+    },
+    "وصل": {
+      "past": "وَصَلَ",
+      "present": "يَصِلُ",
+      "bab": "mithal",
+      "pattern": "وَفَعَلَ يَفِلُ",
+      "gloss": "to arrive / connect"
+    },
+    "وقف": {
+      "past": "وَقَفَ",
+      "present": "يَقِفُ",
+      "bab": "mithal",
+      "pattern": "وَفَعَلَ يَفِلُ",
+      "gloss": "to stop / stand"
+    },
+    "وزن": {
+      "past": "وَزَنَ",
+      "present": "يَزِنُ",
+      "bab": "mithal",
+      "pattern": "وَفَعَلَ يَفِلُ",
+      "gloss": "to weigh"
+    },
+    "وجد": {
+      "past": "وَجَدَ",
+      "present": "يَجِدُ",
+      "bab": "mithal",
+      "pattern": "وَفَعَلَ يَفِلُ",
+      "gloss": "to find"
+    },
+    "ولد": {
+      "past": "وَلَدَ",
+      "present": "يَلِدُ",
+      "bab": "mithal",
+      "pattern": "وَفَعَلَ يَفِلُ",
+      "gloss": "to give birth"
+    },
+    "ورث": {
+      "past": "وَرِثَ",
+      "present": "يَرِثُ",
+      "bab": "mithal",
+      "pattern": "وَفَعَلَ يَفِلُ",
+      "gloss": "to inherit"
+    },
+    "ورد": {
+      "past": "وَرَدَ",
+      "present": "يَرِدُ",
+      "bab": "mithal",
+      "pattern": "وَفَعَلَ يَفِلُ",
+      "gloss": "to arrive / reach"
+    },
+    "وضع": {
+      "past": "وَضَعَ",
+      "present": "يَضَعُ",
+      "bab": "mithal",
+      "pattern": "وَفَعَلَ يَفَلُ",
+      "gloss": "to put / place"
+    },
+    "وقى": {
+      "past": "وَقَى",
+      "present": "يَقِي",
+      "bab": "mithal",
+      "pattern": "وَفَعَلَ يَفِي",
+      "gloss": "to protect / guard"
+    },
+    "قال": {
+      "past": "قَالَ",
+      "present": "يَقُولُ",
+      "bab": "jawwaf-waw",
+      "pattern": "فَالَ يَفُولُ",
+      "gloss": "to say"
+    },
+    "قام": {
+      "past": "قَامَ",
+      "present": "يَقُومُ",
+      "bab": "jawwaf-waw",
+      "pattern": "فَالَ يَفُولُ",
+      "gloss": "to stand / rise"
+    },
+    "زار": {
+      "past": "زَارَ",
+      "present": "يَزُورُ",
+      "bab": "jawwaf-waw",
+      "pattern": "فَالَ يَفُولُ",
+      "gloss": "to visit"
+    },
+    "صام": {
+      "past": "صَامَ",
+      "present": "يَصُومُ",
+      "bab": "jawwaf-waw",
+      "pattern": "فَالَ يَفُولُ",
+      "gloss": "to fast"
+    },
+    "كان": {
+      "past": "كَانَ",
+      "present": "يَكُونُ",
+      "bab": "jawwaf-waw",
+      "pattern": "فَالَ يَفُولُ",
+      "gloss": "to be"
+    },
+    "خاف": {
+      "past": "خَافَ",
+      "present": "يَخَافُ",
+      "bab": "jawwaf-waw",
+      "pattern": "فَالَ يَفَالُ",
+      "gloss": "to fear"
+    },
+    "طال": {
+      "past": "طَالَ",
+      "present": "يَطُولُ",
+      "bab": "jawwaf-waw",
+      "pattern": "فَالَ يَفُولُ",
+      "gloss": "to be long / tall"
+    },
+    "نام": {
+      "past": "نَامَ",
+      "present": "يَنَامُ",
+      "bab": "jawwaf-waw",
+      "pattern": "فَالَ يَفَالُ",
+      "gloss": "to sleep"
+    },
+    "جاء": {
+      "past": "جَاءَ",
+      "present": "يَجِيءُ",
+      "bab": "jawwaf-ya",
+      "pattern": "فَالَ يَفِيلُ",
+      "gloss": "to come"
+    },
+    "باع": {
+      "past": "بَاعَ",
+      "present": "يَبِيعُ",
+      "bab": "jawwaf-ya",
+      "pattern": "فَالَ يَفِيلُ",
+      "gloss": "to sell"
+    },
+    "سار": {
+      "past": "سَارَ",
+      "present": "يَسِيرُ",
+      "bab": "jawwaf-ya",
+      "pattern": "فَالَ يَفِيلُ",
+      "gloss": "to travel / walk"
+    },
+    "عاش": {
+      "past": "عَاشَ",
+      "present": "يَعِيشُ",
+      "bab": "jawwaf-ya",
+      "pattern": "فَالَ يَفِيلُ",
+      "gloss": "to live / exist"
+    },
+    "طار": {
+      "past": "طَارَ",
+      "present": "يَطِيرُ",
+      "bab": "jawwaf-ya",
+      "pattern": "فَالَ يَفِيلُ",
+      "gloss": "to fly"
+    },
+    "شاء": {
+      "past": "شَاءَ",
+      "present": "يَشَاءُ",
+      "bab": "jawwaf-ya",
+      "pattern": "فَالَ يَفِيلُ",
+      "gloss": "to will / wish"
+    },
+    "زاد": {
+      "past": "زَادَ",
+      "present": "يَزِيدُ",
+      "bab": "jawwaf-ya",
+      "pattern": "فَالَ يَفِيلُ",
+      "gloss": "to increase / add"
+    },
+    "فاز": {
+      "past": "فَازَ",
+      "present": "يَفُوزُ",
+      "bab": "jawwaf-waw",
+      "pattern": "فَالَ يَفُولُ",
+      "gloss": "to win / succeed"
+    },
+    "حاز": {
+      "past": "حَازَ",
+      "present": "يَحُوزُ",
+      "bab": "jawwaf-waw",
+      "pattern": "فَالَ يَفُولُ",
+      "gloss": "to possess / obtain"
+    },
+    "دعا": {
+      "past": "دَعَا",
+      "present": "يَدْعُو",
+      "bab": "naqis-waw",
+      "pattern": "فَعَا يَفْعُو",
+      "gloss": "to call / invite"
+    },
+    "دنا": {
+      "past": "دَنَا",
+      "present": "يَدْنُو",
+      "bab": "naqis-waw",
+      "pattern": "فَعَا يَفْعُو",
+      "gloss": "to approach / draw near"
+    },
+    "عفا": {
+      "past": "عَفَا",
+      "present": "يَعْفُو",
+      "bab": "naqis-waw",
+      "pattern": "فَعَا يَفْعُو",
+      "gloss": "to pardon / forgive"
+    },
+    "بكا": {
+      "past": "بَكَى",
+      "present": "يَبْكِي",
+      "bab": "naqis-ya",
+      "pattern": "فَعَى يَفْعِي",
+      "gloss": "to cry / weep"
+    },
+    "رمى": {
+      "past": "رَمَى",
+      "present": "يَرْمِي",
+      "bab": "naqis-ya",
+      "pattern": "فَعَى يَفْعِي",
+      "gloss": "to throw"
+    },
+    "مشى": {
+      "past": "مَشَى",
+      "present": "يَمْشِي",
+      "bab": "naqis-ya",
+      "pattern": "فَعَى يَفْعِي",
+      "gloss": "to walk"
+    },
+    "سعى": {
+      "past": "سَعَى",
+      "present": "يَسْعَى",
+      "bab": "naqis-ya",
+      "pattern": "فَعَى يَفْعَى",
+      "gloss": "to strive / run"
+    },
+    "حمى": {
+      "past": "حَمَى",
+      "present": "يَحْمِي",
+      "bab": "naqis-ya",
+      "pattern": "فَعَى يَفْعِي",
+      "gloss": "to protect / defend"
+    },
+    "جرى": {
+      "past": "جَرَى",
+      "present": "يَجْرِي",
+      "bab": "naqis-ya",
+      "pattern": "فَعَى يَفْعِي",
+      "gloss": "to run / flow"
+    },
+    "بقى": {
+      "past": "بَقِيَ",
+      "present": "يَبْقَى",
+      "bab": "naqis-ya",
+      "pattern": "فَعِيَ يَفْعَى",
+      "gloss": "to remain / stay"
+    },
+    "لقى": {
+      "past": "لَقِيَ",
+      "present": "يَلْقَى",
+      "bab": "naqis-ya",
+      "pattern": "فَعِيَ يَفْعَى",
+      "gloss": "to meet / encounter"
+    },
+    "نسى": {
+      "past": "نَسِيَ",
+      "present": "يَنْسَى",
+      "bab": "naqis-ya",
+      "pattern": "فَعِيَ يَفْعَى",
+      "gloss": "to forget"
+    },
+    "رد": {
+      "past": "رَدَّ",
+      "present": "يَرُدُّ",
+      "bab": "mudaaf",
+      "pattern": "فَعَّ يَفُعُّ",
+      "gloss": "to reply / return"
+    },
+    "مد": {
+      "past": "مَدَّ",
+      "present": "يَمُدُّ",
+      "bab": "mudaaf",
+      "pattern": "فَعَّ يَفُعُّ",
+      "gloss": "to extend / stretch"
+    },
+    "جر": {
+      "past": "جَرَّ",
+      "present": "يَجُرُّ",
+      "bab": "mudaaf",
+      "pattern": "فَعَّ يَفُعُّ",
+      "gloss": "to drag / pull"
+    },
+    "شد": {
+      "past": "شَدَّ",
+      "present": "يَشُدُّ",
+      "bab": "mudaaf",
+      "pattern": "فَعَّ يَفُعُّ",
+      "gloss": "to pull / tighten"
+    },
+    "عض": {
+      "past": "عَضَّ",
+      "present": "يَعَضُّ",
+      "bab": "mudaaf",
+      "pattern": "فَعَّ يَفُعُّ",
+      "gloss": "to bite"
+    },
+    "هم": {
+      "past": "هَمَّ",
+      "present": "يَهُمُّ",
+      "bab": "mudaaf",
+      "pattern": "فَعَّ يَفُعُّ",
+      "gloss": "to concern / matter"
+    },
+    "دل": {
+      "past": "دَلَّ",
+      "present": "يَدُلُّ",
+      "bab": "mudaaf",
+      "pattern": "فَعَّ يَفُعُّ",
+      "gloss": "to point / indicate"
+    },
+    "حل": {
+      "past": "حَلَّ",
+      "present": "يَحِلُّ",
+      "bab": "mudaaf",
+      "pattern": "فَعَّ يَفِعُّ",
+      "gloss": "to solve / settle"
+    },
+    "أمر": {
+      "bab": "nasara",
+      "past": "أَمَرَ",
+      "present": "يَأْمُرُ",
+      "gloss": "to order / command",
+      "rootType": "regular"
+    },
+    "بدأ": {
+      "bab": "fataha",
+      "past": "بَدَأَ",
+      "present": "يَبْدَأُ",
+      "gloss": "to begin / start",
+      "rootType": "regular"
+    },
+    "ملأ": {
+      "bab": "fataha",
+      "past": "مَلَأَ",
+      "present": "يَمْلَأُ",
+      "gloss": "to fill",
+      "rootType": "regular"
+    },
+    "أخذ": {
+      "bab": "nasara",
+      "past": "أَخَذَ",
+      "present": "يَأْخُذُ",
+      "gloss": "to take / seize",
+      "rootType": "regular",
+      "r1": "أ"
+    },
+    "بكى": {
+      "bab": "naqis-ya",
+      "past": "بَكَى",
+      "present": "يَبْكِي",
+      "gloss": "to cry / weep",
+      "rootType": "defective_ya"
+    }
+  },
+  "aliases": {
+    "اخذ": "أخذ",
+    "اكل": "أكل",
+    "امر": "أمر",
+    "سال": "سأل",
+    "قرا": "قرأ",
+    "بدا": "بدأ",
+    "ملا": "ملأ",
+    "رمي": "رمى",
+    "مشي": "مشى",
+    "سعي": "سعى",
+    "حمي": "حمى",
+    "جري": "جرى",
+    "بقي": "بقى",
+    "لقي": "لقى",
+    "نسي": "نسى",
+    "بكي": "بكى",
+    "وقي": "وقى"
+  }
+}

@@ -1,0 +1,349 @@
+ROOTIFY — PHASE 1 IMPLEMENTATION PACK
+Objective: stabilize the engine, stop patching individual words, and make Arabic morphology the primary authority.
+
+NON-NEGOTIABLE PRINCIPLES
+
+1. Arabic morphology is the source of truth.
+2. English is support only, never the main controller.
+3. No word-specific patching unless it is a lexicon entry.
+4. No UI redesign in this phase.
+5. Separate engine logic from rendering logic.
+6. Generalize every fix. Do not fix one passage or one token only.
+
+PHASE 1 SCOPE
+
+A. Freeze UI
+Do not change:
+
+* overall layout
+* spacing
+* card structure
+* table structure
+* visual hierarchy
+
+Allowed UI work only:
+
+* bug fixes
+* alignment corrections
+* missing labels
+* font sizing if needed for readability
+
+B. Build one central morphology engine
+
+Create one authoritative analysis function, used everywhere:
+
+analyzeToken(surface, context?) => {
+surface,
+normalized,
+lemma,
+root,
+pos,
+form,
+verbClass,
+features,
+gloss,
+confidence,
+source,
+notes
+}
+
+Required fields:
+
+* pos: verb | noun | adjective | particle | pronoun | proper_noun | unknown
+* form: I to X when verb
+* verbClass: sound | hollow | defective | assimilated | doubled | hamzated
+* features:
+
+  * tense/aspect: past | present | imperative | future
+  * person
+  * number
+  * gender
+  * voice: active | passive
+* confidence: high | medium | low
+* source: lexicon | morphology_rule | fallback
+
+Hard rule:
+No tooltip, no conjugation table, and no action chain may classify directly from ad hoc local rules. Everything must call analyzeToken().
+
+C. Build the analysis pipeline in this order
+
+Step 1 — Preserve original surface form
+Do not lose shadda, hamza, alif maqṣūra, or tāʾ marbūṭa too early.
+Keep:
+
+* original surface
+* normalized form
+* stripped form
+
+Step 2 — Lexicon lookup
+If the exact lexical entry exists, use it first.
+Lexicon entry should define:
+
+* lemma
+* root
+* form
+* verbClass
+* transitivity if known
+* trusted gloss
+
+Step 3 — Morphological classification
+If not found in lexicon, classify by Arabic morphology only.
+
+Required morphological locks:
+
+1. ال at the beginning locks noun/adjective track, not verb.
+2. Present prefixes:
+
+* ي
+* ت
+* أ
+* ن
+  must trigger imperfect verb analysis before noun fallback.
+
+3. Future prefixes:
+
+* س
+* سوف
+  must trigger verb analysis before noun fallback.
+
+4. Past suffixes:
+
+* ت
+* نا
+* وا
+* نَ
+  must trigger past verb analysis before noun fallback.
+
+5. Imperative patterns must be checked before noun fallback.
+6. Passive patterns must be checked before generic noun fallback.
+
+Step 4 — English support layer
+English may only:
+
+* confirm a plausible result
+* block an obviously contradictory result
+* help with proper names
+* provide gloss display
+
+English may not:
+
+* invent form
+* invent tense
+* invent measure
+* override a strong Arabic morphological lock
+
+Priority order must be:
+
+1. Arabic lexicon
+2. Arabic morphology
+3. English contradiction check
+4. fallback
+5. unknown
+
+D. Implement verb-class system
+
+Required verb classes:
+
+* sound
+* hollow
+* defective
+* assimilated
+* doubled
+* hamzated
+
+Each verb must be assigned a class before full conjugation.
+
+Examples that must work:
+
+* كتب → sound
+* قال → hollow
+* رأى → defective
+* وعد → assimilated
+* شدّ → doubled
+* سأل → hamzated
+
+E. Conjugation generator must be rule-based
+
+Do not build conjugation from guesswork.
+Use:
+generateConjugation(lemma, form, verbClass)
+
+Required outputs:
+
+* active past
+* active present
+* future
+* imperative
+* passive past
+* passive present
+
+Known verbs must generate full tables correctly.
+Unknown verbs may generate candidate tables only if clearly marked as estimated.
+
+F. Tooltip renderer must become dumb
+
+Tooltip code must not classify.
+It only renders analysis results.
+
+Tooltip contract:
+
+* one POS line only
+* one form line only when relevant
+* one morphology/features line only when relevant
+* one gloss line only
+* no duplicate divs
+* no empty output containers
+
+Example output:
+Verb
+Form I
+Defective verb
+Past, 3rd masculine singular
+→ saw
+
+Example:
+Noun
+Definite singular
+→ day
+
+Example:
+Proper noun
+Personal name
+→ Trump
+
+G. Generalization guardrails
+
+Before shipping any fix, ask:
+
+1. Does this solve a pattern or only one word?
+2. Can this break another verb class?
+3. Is Arabic still in control?
+4. Is the result explainable?
+
+Do not approve any fix that only works because one passage happened to contain a certain English translation.
+
+H. Required test coverage
+
+Build or update tests for these groups:
+
+1. Sound verbs
+
+* كتب
+* فتح
+* جلس
+
+2. Hollow verbs
+
+* قال
+* عاد
+* نام
+
+3. Defective verbs
+
+* رأى
+* سعى
+* دعا
+
+4. Doubled verbs
+
+* شدّ
+* ردّ
+* مرّ
+
+5. Hamzated verbs
+
+* سأل
+* قرأ
+* أخذ
+
+6. Assimilated verbs
+
+* وعد
+* وجد
+* وصل
+
+7. Prefix verb detection
+
+* يكتب
+* تكتب
+* أكتب
+* نكتب
+* سيكتب
+
+8. Suffix verb detection
+
+* كتبت
+* كتبوا
+* كتبنا
+
+9. Noun lock with ال
+
+* اليوم
+* الحكومة
+* التصويت
+* المجلة
+
+10. Proper names
+
+* ترمب
+* أوربان
+* بودابست
+* فانس
+
+11. Known ambiguity cases
+
+* حمل
+* خرج
+* يوم
+* غير
+
+12. Shadda-sensitive measure cases
+
+* صرّح
+* درّس
+* قدّم
+
+I. Phase 1 acceptance criteria
+
+Phase 1 is complete only when all are true:
+
+1. رأى conjugates correctly as defective:
+
+* past: رأى
+* present: يرى
+  not يرأي
+
+2. Tooltip logic no longer randomly labels:
+
+* nouns as verbs
+* verbs as nouns
+* proper names as verbs
+
+3. English support no longer causes false overrides against strong Arabic morphology.
+
+4. No empty or broken tooltip shells.
+
+5. No local patch rules for single passages.
+
+6. Conjugation tables are generated from the central engine, not separate table logic.
+
+7. RTL is stable and Arabic displays naturally.
+
+J. Work order
+
+Implement in this sequence only:
+
+1. Central analyzeToken engine
+2. verb-class assignment
+3. rule-based conjugation generator
+4. tooltip renderer refactor
+5. English support layer restriction
+6. regression tests
+7. browser validation on known difficult verbs
+
+K. Explicit warning
+
+Do not keep stacking SAL-style overrides as the main solution.
+Those are acceptable only as weak support checks after Arabic morphology, not as the real engine.
+
+Rootify must become a true Arabic morphology engine, not a translation-driven patch system.

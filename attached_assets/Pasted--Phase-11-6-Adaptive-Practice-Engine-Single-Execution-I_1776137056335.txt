@@ -1,0 +1,300 @@
+**Phase 11.6 — Adaptive Practice Engine (Single Execution Instruction)**
+
+Precondition:
+Confirm Phase 11.5 (Interactive Intelligence Layer) is stable and no UI refactors are in progress. This phase must build on the current system without modifying core behavior.
+
+---
+
+## Scope
+
+Implement an **adaptive practice system** that generates exercises based on:
+
+* verb class
+* form number
+* transitivity
+* difficulty level (Student vs Teacher Mode)
+* available verb data
+
+This is primarily a **UI + logic layer on top of existing data**.
+
+---
+
+## Frozen layers — DO NOT MODIFY
+
+* morphology engine
+* conjugation generation logic
+* Arabic search flow
+* English grouped search logic
+* pronoun ordering
+* existing conjugation tables
+* root exploration logic
+
+No changes to how verbs are generated — only how they are practiced.
+
+---
+
+## Goal
+
+Turn Rootify into a **training system**, not just a reference tool.
+
+Users should:
+
+* practice verb forms
+* reinforce patterns
+* learn differences between forms
+* receive immediate feedback
+
+---
+
+## Core Feature
+
+Add a **“Practice Engine”** that dynamically generates exercises for the current verb.
+
+---
+
+## Exercise Types (Phase 1 — REQUIRED)
+
+Implement these 5 core exercise types:
+
+### 1. Conjugation Selection
+
+Prompt:
+“Choose the correct present form for: (هو)”
+
+Options:
+
+* يَكْتُبُ ✅
+* كَتَبَ
+* يُكْتَبُ
+* يَكْتِبُ
+
+---
+
+### 2. Masdar Identification
+
+Prompt:
+“What is the verbal noun (المصدر)?”
+
+Options:
+
+* كِتَابَة ✅
+* كَاتِب
+* مَكْتُوب
+* كَتَبَ
+
+---
+
+### 3. Participle Recognition
+
+Prompt:
+“Which is the active participle (اسم الفاعل)?”
+
+Options:
+
+* كَاتِب ✅
+* مَكْتُوب
+* كِتَابَة
+* كَتَبَ
+
+---
+
+### 4. Verb Type Recognition
+
+Prompt:
+“Is this verb transitive or intransitive?”
+
+Options:
+
+* متعدٍّ ✅
+* لازم
+
+---
+
+### 5. Form Meaning Awareness
+
+Prompt:
+“What does Form II usually indicate?”
+
+Options:
+
+* causative/intensive ✅
+* passive
+* future
+* negation
+
+---
+
+## Adaptive Logic
+
+### Base rules:
+
+* **Student Mode**
+
+  * easier questions
+  * fewer distractors
+  * focus on basics (forms, masdar, participles)
+
+* **Teacher Mode**
+
+  * more difficult distractors
+  * include pattern nuance
+  * include class-based questions
+
+---
+
+## Difficulty Scaling
+
+Use internal signals:
+
+* Form I → easier
+* Derived forms → medium
+* weak verbs (hollow, defective) → harder
+* rare forms → advanced
+
+---
+
+## Question Generation Rules
+
+* Always include **1 correct answer**
+* Include **3 distractors**
+* Distractors must be:
+
+  * plausible
+  * same category (no obvious wrong answers)
+* Avoid random or unrelated words
+
+---
+
+## Feedback System
+
+After each answer:
+
+### Correct:
+
+* show confirmation
+* brief explanation
+
+Example:
+“Correct — كِتَابَة is the verbal noun (المصدر), representing the action of writing.”
+
+### Incorrect:
+
+* show correct answer
+* short explanation
+
+Example:
+“Incorrect — مَكْتُوب is a passive participle (اسم المفعول), not the verbal noun.”
+
+---
+
+## UI Integration
+
+### Add:
+
+* “Generate Practice” button (already exists → upgrade behavior)
+* display 1 question at a time
+* show answer options clearly
+* show feedback after selection
+* allow next question
+
+Optional:
+
+* simple progress indicator (e.g., Question 2 of 5)
+
+---
+
+## Session Structure (Phase 1)
+
+Each session:
+
+* 3 to 5 questions
+* mix of types
+* based on current verb
+
+---
+
+## Data Usage
+
+Use ONLY existing data:
+
+* conjugations
+* masdar
+* participles
+* verb class
+* form number
+* transitivity
+
+Do not introduce new linguistic computation.
+
+---
+
+## Mode Behavior
+
+### Student Mode:
+
+* simpler wording
+* minimal explanation
+* fewer advanced terms
+
+### Teacher Mode:
+
+* richer explanations
+* include terminology (e.g., “Form II causative”)
+* slightly harder distractors
+
+---
+
+## Accessibility
+
+* must work on mobile (tap)
+* clear clickable options
+* no small unreadable text
+* feedback must be easy to read
+
+---
+
+## Tests (REQUIRED)
+
+### Functional:
+
+* questions generate correctly
+* correct answer always present
+* distractors are valid
+
+### Mode:
+
+* Student Mode easier than Teacher Mode
+* explanations differ appropriately
+
+### Regression:
+
+* no changes to conjugation logic
+* no changes to search behavior
+* no UI breakage
+
+---
+
+## Deliverable
+
+Provide:
+
+1. exercise types implemented
+2. question generation logic summary
+3. example generated questions
+4. UI flow description
+5. tests added
+6. confirmation frozen layers untouched
+
+---
+
+## Critical Constraint
+
+Do NOT overbuild.
+
+This is Phase 1:
+
+* keep it simple
+* keep it correct
+* keep it clean
+
+Future phases will expand adaptivity.

@@ -1,0 +1,148 @@
+**Derived Nouns Layout — FORCE Full-Width Grid (Fix Not Optional)**
+
+## Problem (confirmed NOT fixed)
+
+The Derived Nouns section STILL:
+
+* clusters cards on the right
+* leaves empty space on the left
+* uses inconsistent layout between rows
+* does NOT span full width
+
+This is a **layout system failure**, not a styling issue.
+
+---
+
+## REQUIRED FIX (MANDATORY)
+
+### 1. ONE unified grid container
+
+Wrap ALL derived noun cards inside ONE container:
+
+* must span full width of the content area
+* must NOT be right-aligned
+* must NOT use per-section layout logic
+
+---
+
+### 2. Use a real grid (NOT flex hacks)
+
+Implement:
+
+* **display: grid**
+* columns must auto-fill available space
+
+### Required behavior:
+
+Desktop:
+→ 3 or 4 equal columns across full width
+
+Tablet:
+→ 2 columns
+
+Mobile:
+→ 1 column
+
+---
+
+### 3. FORCE cards to fill the row
+
+Each row must:
+
+* stretch from left edge to right edge
+* distribute cards evenly
+* have NO empty side gaps
+
+---
+
+### 4. REMOVE right alignment completely
+
+Check and REMOVE:
+
+* margin-left auto
+* justify-content: flex-end
+* RTL misalignment pushing content right
+* any wrapper limiting width
+
+---
+
+### 5. ALL subsections must use SAME grid
+
+Fix this bug specifically:
+
+Current:
+
+* Exaggeration → 1 card (right side only ❌)
+* Place → 1 card (right side only ❌)
+* Instrument → 3 cards (full width ✔)
+
+Required:
+
+* ALL sections use SAME grid
+* cards align in consistent rows
+
+---
+
+### 6. Section titles must NOT break layout
+
+Section headers (Exaggeration / Place / Instrument):
+
+* should sit ABOVE the grid
+* should NOT wrap cards individually
+* should NOT create isolated right-side rows
+
+---
+
+### 7. Card sizing
+
+Cards must:
+
+* expand to fill grid column
+* have equal width
+* have consistent height feel
+* NOT shrink to content width
+
+---
+
+### 8. Visual test (STRICT)
+
+After fix:
+
+* NO empty left area
+* cards fill entire width
+* rows are balanced
+* no “floating right column”
+* layout feels centered and stable
+
+---
+
+## DO NOT TOUCH
+
+* card content
+* text
+* morphology
+* logic
+* data
+
+ONLY layout system
+
+---
+
+## Deliverable
+
+1. grid implementation used
+2. confirmation flex/right-alignment removed
+3. before/after screenshot
+4. confirmation all sections use same layout
+
+---
+
+## FAILURE CONDITION (important)
+
+If ANY:
+
+* right clustering remains
+* left empty space exists
+* rows are inconsistent
+
+→ the fix is NOT complete

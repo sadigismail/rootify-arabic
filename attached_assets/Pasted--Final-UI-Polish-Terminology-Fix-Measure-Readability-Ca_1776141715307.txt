@@ -1,0 +1,294 @@
+**Final UI Polish + Terminology Fix — Measure (وزن) + Readability + Card Layout**
+
+## Scope
+
+This is a **final visual polish + terminology correction pass**.
+
+Goals:
+
+* clean visual hierarchy
+* eliminate gray readability issues
+* fix crowded card headers
+* enforce Arabic dominance
+* replace “Form” with **“Measure (وزن)”** across the UI
+
+---
+
+## Do NOT change
+
+* morphology engine
+* conjugation logic
+* search logic
+* lexicon data
+* practice engine
+* component structure
+
+Only adjust:
+
+* terminology (Form → Measure)
+* styling (CSS)
+* visual hierarchy
+
+---
+
+# 1. Terminology Fix (CRITICAL)
+
+Replace ALL occurrences of:
+
+* “Form I, II, III…”
+  → with
+* **“Measure I, II, III…”**
+
+### Arabic pairing:
+
+Where appropriate, use:
+
+* **Measure I (الوزن الأول)**
+* OR short version: **Measure I · وزن**
+
+### Apply everywhere:
+
+* card headers
+* tooltips
+* practice engine questions
+* labels
+* badges
+* internal UI text
+
+### Rule:
+
+The system must consistently reflect **Measure (وزن)**, not Form.
+
+---
+
+# 2. Fix Crowded Card Header (Top-Right Corner)
+
+## Problem
+
+Too many elements stacked:
+
+* theoretical / attested
+* Measure label
+* Roman numeral
+* current badge
+* English description
+
+## Required fix
+
+### Create clean structure:
+
+#### Top metadata strip (small, quiet)
+
+Contains:
+
+* Measure label (Measure II, etc.)
+* theoretical / attested (small, low contrast)
+* current (very subtle)
+
+#### Below it:
+
+* English description (e.g. Causative, Reflexive)
+
+#### Below that:
+
+* Arabic verb (main focal point)
+
+---
+
+## Rules
+
+* DO NOT stack multiple badges in the corner
+* DO NOT let metadata compete with titles
+* Move elements into horizontal strip if needed
+* Keep corner visually calm
+
+---
+
+# 3. Enforce Language Hierarchy
+
+## Arabic = Primary
+
+* darker color
+* stronger weight (500–600)
+* largest visual element
+
+## English = Secondary
+
+* slightly lighter
+* smaller than Arabic
+* never equal weight
+
+## Metadata = Tertiary
+
+* lighter
+* minimal visual presence
+
+---
+
+# 4. Fix Gray Text System (VERY IMPORTANT)
+
+Current issue: too many gray shades + weak contrast
+
+## Replace with ONLY 3 levels:
+
+### Level 1 — Primary
+
+* Arabic text
+* strong, dark
+
+### Level 2 — Secondary
+
+* transliteration
+* English support
+* medium-dark gray (clearly readable)
+
+### Level 3 — Tertiary
+
+* metadata
+* helper labels
+* lighter gray but NOT faint
+
+---
+
+## Apply to:
+
+### A. Transliteration
+
+* darken further
+* must be readable instantly
+
+### B. Small labels
+
+Fix:
+
+* `.Pres`
+* `Masdar`
+* `Doer`
+
+Actions:
+
+* darken text
+* remove overly faint styling
+* keep consistent
+
+### C. English example translations
+
+* increase contrast
+* ensure readability at normal zoom
+
+---
+
+# 5. Highlight Softening (Global)
+
+Highlighting must NOT compete with Arabic text.
+
+## Apply:
+
+* reduce saturation further
+* avoid strong red
+* prefer muted tone (like soft amber)
+
+## Rule:
+
+Highlight = annotation
+NOT = main content
+
+---
+
+## Mode behavior
+
+### Student Mode
+
+* almost no highlight
+* very subtle
+
+### Teacher Mode
+
+* keep highlight
+* but soft and calm
+
+---
+
+# 6. Typography Balance (Arabic vs English)
+
+## Fix mismatch:
+
+* Arabic font: keep strong and clear
+* English font:
+
+  * slightly increase weight if too thin
+  * but still lighter than Arabic
+
+Avoid:
+
+* thin English next to bold Arabic
+
+---
+
+# 7. Micro-text Readability Fix
+
+Improve:
+
+* transliteration
+* subtitles
+* helper text
+* table labels
+
+## Apply:
+
+* slight size increase
+* slightly darker color
+* better spacing
+
+---
+
+# 8. Visual Calm Rule
+
+Final UI must feel:
+
+* calm
+* balanced
+* not crowded
+* not washed out
+* easy to scan for long sessions
+
+---
+
+# 9. Success Criteria
+
+After this pass:
+
+* Arabic clearly dominates visually
+* English supports, not competes
+* no faint unreadable gray text
+* card headers are clean and organized
+* no crowded top-right corners
+* highlighting does not distract
+* long conjugation tables are easy to read
+
+---
+
+# 10. Deliverable
+
+Provide:
+
+1. list of all “Form → Measure” replacements
+2. updated card header layout
+3. new 3-level color system
+4. highlight adjustments
+5. before/after screenshots
+6. confirmation no logic or data changed
+
+---
+
+## Critical Constraint
+
+This is the **final polish layer**.
+
+Do NOT:
+
+* add new features
+* change behavior
+* introduce new UI complexity
+
+Only refine clarity, hierarchy, and terminology.

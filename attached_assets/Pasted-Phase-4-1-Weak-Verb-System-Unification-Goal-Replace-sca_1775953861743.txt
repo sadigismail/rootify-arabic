@@ -1,0 +1,118 @@
+Phase 4.1 — Weak Verb System Unification
+
+Goal:
+Replace scattered weak-verb fixes with one unified morphology layer that handles all weak verbs consistently across:
+
+* conjugation
+* active participles
+* passive participles
+* masdar generation
+* exaggeration nouns
+* derived form cards
+
+Coverage:
+
+1. Hollow verbs (الأجوف)
+
+   * waw hollow
+   * ya hollow
+
+2. Defective verbs (الناقص)
+
+   * waw final
+   * ya final
+
+3. Assimilated verbs (المثال)
+
+   * initial waw
+   * initial ya where relevant
+
+4. Doubled weak edge cases where applicable
+
+Core requirement:
+All derivational patterns must use the recovered root, not only the surface past form.
+
+Unification rules:
+
+1. Create one central weak-verb module
+   Example name:
+   weakVerbEngine.ts
+
+2. This module should expose:
+
+   * weak verb classification
+   * recovered root radicals
+   * productive pattern application helpers
+   * surface-form generation rules
+
+3. All route handlers and noun-generation helpers should call this shared module instead of applying separate local fixes.
+
+Needed behavior examples:
+
+Hollow verbs:
+قال → root ق و ل
+باع → root ب ي ع
+ساق → root س و ق or lexical class as stored
+Active participle:
+قال → قائل
+باع → بائع
+ساق → سائق
+
+Passive participle:
+قال → مقول
+باع → مبيع
+ساق → مسوق
+
+Exaggeration nouns:
+قال → قوّال
+باع → بيّاع
+سار → سيّار
+نام → نوّام
+
+Defective verbs:
+دعا / رمى / سعى / قضى
+Generate their productive derivatives consistently with preserved final weak behavior.
+
+Assimilated verbs:
+وعد / وجد / وقع
+Handle initial weak radical consistently across present and derivation rules.
+
+Important:
+
+* Preserve hamza correctly
+* Preserve ى vs ي correctly
+* Do not replace productive derivation with lexicalized nouns unless explicitly marked as lexical exceptions
+* Support lexicon exceptions when needed, but keep the default engine productive and rule-based
+
+Add exception handling:
+Create a small explicit exception map for cases where productive morphology is not the preferred user-facing output.
+This map must be separate from the productive weak-verb rules.
+
+Testing:
+Add a dedicated weak-verb regression suite covering:
+
+* قال
+* باع
+* سار
+* ساق
+* نام
+* صام
+* دعا
+* رمى
+* سعى
+* قضى
+* وعد
+* وجد
+* وقع
+
+For each, test:
+
+* base conjugation
+* active participle
+* passive participle
+* exaggeration noun where applicable
+* masdar where supported
+* any derived cards shown in UI
+
+Goal:
+One trusted weak-verb engine for all outputs, so Rootify stops needing one-off fixes for each weak-verb pattern.

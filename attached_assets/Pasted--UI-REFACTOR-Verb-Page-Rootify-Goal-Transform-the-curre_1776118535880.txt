@@ -1,0 +1,271 @@
+**UI REFACTOR — Verb Page (Rootify)**
+Goal: Transform the current verb page into a clean, high-hierarchy, low-noise layout with strong Arabic-first presentation.
+
+This is a **UI-only refactor**. Do NOT modify any backend logic, morphology engine, or data structures.
+
+---
+
+# 1. GLOBAL CLEANUP (APPLY FIRST)
+
+## 1.1 Remove visual noise
+
+* Remove ~70% of horizontal divider lines across the page
+* Keep ONLY:
+
+  * one separator between major sections
+* Replace removed lines with vertical spacing
+
+## 1.2 Increase spacing
+
+* Add more vertical space BETWEEN sections
+* Slightly increase line-height for readability
+* Avoid dense stacking of elements
+
+---
+
+# 2. TYPOGRAPHY SYSTEM (MANDATORY)
+
+## 2.1 Arabic vs English hierarchy
+
+* Arabic text MUST be:
+
+  * larger
+  * bolder
+  * visually dominant
+
+* English text MUST be:
+
+  * slightly smaller
+  * medium weight (NOT thin/light)
+  * supportive, not competing
+
+## 2.2 Section titles
+
+* Increase size by ~30–40%
+* Increase weight (bold or semi-bold)
+* Add more spacing ABOVE titles than below
+
+---
+
+# 3. HERO BLOCK (TOP OF PAGE)
+
+## Replace current scattered header with a unified block:
+
+Display in this order:
+
+1. Large Arabic verb (center or left aligned)
+2. Below it:
+
+   * Root (ك ت ب)
+   * Form (Form II, III, etc.)
+   * Bāb (if available)
+3. Below:
+
+   * English meaning
+
+## Rules:
+
+* Arabic verb = largest text on page
+* English meaning = medium size (not small caption)
+* Metadata (root/form) = small but clear
+
+---
+
+# 4. CONJUGATION TABLE
+
+## Keep existing functionality but improve UI:
+
+* Increase row height slightly
+* Remove most horizontal lines inside table
+* Add subtle zebra row background (very light)
+* Keep headers clear (Past / Present / etc.)
+
+Do NOT change:
+
+* pronoun order
+* conjugation data
+* passive/active logic
+
+---
+
+# 5. CORE DERIVATIONS (PARTICIPLES + MASDAR)
+
+## Replace current card design with simplified 3-column layout:
+
+Columns:
+
+* Active Participle (اسم الفاعل)
+* Passive Participle (اسم المفعول)
+* Verbal Noun (المصدر)
+
+Each column contains:
+
+* Small label (top)
+* Large Arabic form (main focus)
+* Smaller English meaning below
+
+## Remove:
+
+* “rule-based”
+* “high”
+* any badges or technical labels
+
+Goal: clean, educational, not technical
+
+---
+
+# 6. VERB FAMILY SECTION (MAJOR UPGRADE)
+
+## Convert into structured grid:
+
+Each row = one related verb
+
+Display:
+
+Arabic past | Arabic present | masdar
+English meanings below each column
+
+Example structure:
+
+* Arabic row (aligned horizontally)
+* English row (below)
+
+## Rules:
+
+* Align Arabic forms cleanly
+* Keep spacing between rows
+* No heavy borders
+
+---
+
+# 7. PREPOSITION MEANINGS
+
+## Simplify layout:
+
+Each entry:
+
+* Arabic verb + preposition
+* arrow (→)
+* short English meaning
+
+Example:
+كَتَبَ لِـ → wrote to / for
+
+## Rules:
+
+* No long explanations
+* No paragraphs
+* Keep it scannable
+
+---
+
+# 8. DERIVED NOUNS (MERGE SECTIONS)
+
+## Merge these into ONE section:
+
+* Exaggeration nouns
+* Place & time nouns
+* Instrument nouns
+
+## New section: “Derived Nouns”
+
+Display:
+
+* Arabic noun
+* English meaning
+
+Optional:
+
+* small tag (place / tool / person)
+
+## Remove:
+
+* long descriptions
+* repeated section headers
+
+---
+
+# 9. USAGE & EXAMPLES
+
+## Structure:
+
+Group by level:
+
+Level 1:
+
+* Arabic sentence (bold)
+* English translation (lighter)
+
+Level 2:
+
+* same structure
+
+## Rules:
+
+* Arabic = visually stronger
+* English = lighter support
+* clear spacing between examples
+
+---
+
+# 10. REMOVE THESE ELEMENTS (STRICT)
+
+Remove everywhere:
+
+* “rule-based”
+* “high confidence”
+* excessive grey divider lines
+* very small subtitle text
+* duplicated explanatory text
+
+---
+
+# 11. FINAL VISUAL HIERARCHY (MUST MATCH)
+
+Each section should visually follow:
+
+1. Section title (clear, bold)
+2. Arabic content (largest)
+3. English support (smaller)
+4. Optional explanation (lightest)
+
+---
+
+# 12. DO NOT MODIFY
+
+* Morphology engine
+* Conjugation logic
+* Data models
+* API responses
+* Pronoun ordering
+* Passive/active generation
+
+This is strictly a UI/layout refactor.
+
+---
+
+# 13. SUCCESS CRITERIA
+
+After implementation:
+
+* Page is scannable at a glance
+* Arabic is clearly dominant
+* English supports without clutter
+* No “invisible” grey lines
+* Sections feel separated by space, not lines
+* UI feels clean, modern, and professional
+
+---
+
+# 14. DELIVERABLE
+
+Provide:
+
+1. list of components updated
+2. before/after description of layout
+3. confirmation no logic was changed
+4. screenshots of:
+
+   * top section
+   * conjugation table
+   * derivations section

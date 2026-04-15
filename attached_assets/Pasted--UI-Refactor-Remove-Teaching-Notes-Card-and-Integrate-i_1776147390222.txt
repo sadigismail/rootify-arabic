@@ -1,0 +1,115 @@
+**UI Refactor — Remove “Teaching Notes” Card and Integrate into Header**
+
+## 1. REMOVE Teaching Notes Card (Completely)
+
+Delete the entire Teaching Notes block:
+
+* Remove component rendering (TeachingNotesCard / notes section)
+* Remove all related CSS styles
+* Remove spacing reserved for it
+
+This section must NOT exist anywhere in the UI.
+
+---
+
+## 2. MOVE Its Content Into the Black Header Card
+
+Take ALL useful information from Teaching Notes and inject it into the top dark header card (the one showing the verb "شرب").
+
+---
+
+## 3. New Structure for Header Card
+
+### Keep existing:
+
+* Verb (Arabic) → large (شَرِبَ)
+* Root (ش ر ب)
+* Measure (Measure I)
+* Gloss (to drink)
+
+---
+
+### ADD a new section inside the header card:
+
+```text
+Quick Notes
+```
+
+#### Layout (RTL-aware):
+
+**Arabic (primary):**
+
+```text
+• فعل متعدٍ — يحتاج إلى مفعول به
+• من أبسط الأفعال — قاعدة مرجعية
+```
+
+**English (secondary, below or inline lighter):**
+
+```text
+• Transitive verb — requires a direct object
+• Basic verb — reference pattern
+```
+
+---
+
+## 4. Visual Styling (CRITICAL)
+
+Inside the black card:
+
+```css
+.header-notes {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+}
+
+.header-notes-ar {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.header-notes-en {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.65);
+}
+```
+
+✔ Arabic = stronger
+✔ English = lighter
+✔ No grey-on-white readability issues anymore
+
+---
+
+## 5. Layout Rules
+
+* Keep everything inside ONE unified dark card
+* Do NOT create a new box/card
+* Do NOT increase vertical height excessively
+* Maintain compact, high-information density
+
+---
+
+## 6. Result
+
+Before:
+❌ Disconnected card
+❌ Weak hierarchy
+❌ Wasted space
+
+After:
+✅ Single authoritative header
+✅ Cleaner page flow
+✅ Immediate pedagogical clarity
+✅ Professional look (DLI-level)
+
+---
+
+## 7. Deliverable
+
+Agent must show:
+
+1. Header card with integrated notes
+2. Confirmation Teaching Notes component is fully removed
+3. Screenshot before/after comparison

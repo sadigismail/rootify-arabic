@@ -1,0 +1,248 @@
+**Global Morphology Highlight System — Root Black, Affixes Red (STRICT RULE)**
+
+## Scope
+
+This is a **global rendering rule** for ALL Arabic forms.
+
+Apply to:
+
+* conjugation table
+* verb forms grid
+* derived nouns
+* tooltips
+* practice UI
+* ANY Arabic word rendered
+
+---
+
+## Core Rule (NON-NEGOTIABLE)
+
+For every Arabic form:
+
+* **ROOT letters = BLACK**
+* **ALL AFFIXES = RED**
+
+No other highlight colors allowed.
+
+Remove:
+
+* purple (weak letters)
+* amber (root highlight)
+* underline systems
+* multi-layer highlighting
+
+---
+
+## What counts as AFFIXES
+
+Color RED:
+
+### 1. Prefixes
+
+Examples:
+
+* أ
+* ن
+* ي
+* ت
+* س
+* سوف
+
+---
+
+### 2. Suffixes
+
+Examples:
+
+* ت
+* نا
+* تم
+* تن
+* ون
+* ين
+* ان
+* وا
+
+---
+
+### 3. Infixes (inside pattern)
+
+Examples:
+
+* ت in Form VIII (افتعل)
+* doubling/shadda from pattern
+* inserted vowels from pattern structure
+
+---
+
+### 4. Pattern additions (non-root letters)
+
+Any letter NOT part of the triliteral root is RED.
+
+---
+
+## What stays BLACK
+
+ONLY:
+
+* the original ROOT letters (ف ع ل positions)
+
+Examples:
+
+كتب → ك ت ب (all black)
+
+يكتب → ي (red) + كتب (black)
+
+استكتب → است (red) + كتب (black)
+
+انطلق → ان (red) + طلق (black)
+
+---
+
+## CRITICAL: Root detection must be correct
+
+Do NOT guess visually.
+
+Use:
+
+* existing morphology engine output
+* root extraction already computed
+
+If root = (ك ت ب):
+→ ONLY these letters are black everywhere
+
+---
+
+## Special Cases Handling
+
+### 1. Weak verbs (hollow, defective)
+
+Even if root letter:
+
+* changes form
+* drops
+* becomes vowel-like
+
+Still treat it as ROOT → BLACK
+
+Example:
+قال → ق و ل (و is root even if not visible)
+
+---
+
+### 2. Hamzated verbs
+
+Hamza is ROOT if part of root → BLACK
+
+Do NOT treat hamza as affix
+
+---
+
+### 3. Assimilation (IMPORTANT)
+
+Example:
+Form VIII with د / ذ / ز:
+
+ادّخر ← original form افتعل
+
+The doubled consonant:
+
+* first part = affix (RED)
+* second part = root (BLACK)
+
+You must correctly split the shadda.
+
+---
+
+## Rendering Rules
+
+### 1. Use ONLY two colors
+
+* black (#111 or similar)
+* red (#dc2626 or similar)
+
+No gradients, no extra tones.
+
+---
+
+### 2. Diacritics follow their letter
+
+* if letter is red → diacritic is red
+* if letter is black → diacritic is black
+
+---
+
+### 3. Maintain word integrity
+
+* do NOT break spacing
+* do NOT distort ligatures
+* keep Arabic readable as one unit
+
+---
+
+### 4. Teacher vs Student Mode
+
+Student Mode:
+
+* OPTIONAL: disable coloring OR keep minimal
+
+Teacher Mode:
+
+* FULL root/affix coloring active
+
+---
+
+## Remove previous system completely
+
+Delete or disable:
+
+* hl-root
+* hl-root-soft
+* hl-weak
+* multi-color logic
+* highlight stacking logic
+
+This system replaces ALL of them.
+
+---
+
+## Test Cases (MANDATORY)
+
+Verify visually:
+
+* كتب / يكتب / سيكتب
+* قرأ / يقرأ
+* عاد / يعود
+* رأى / يرى
+* استخرج
+* ادّخر (assimilation case)
+
+---
+
+## Success Criteria
+
+* every word clearly shows:
+  → core meaning (black)
+  → grammatical additions (red)
+
+* no color conflict
+
+* no unreadable stacking
+
+* no purple / amber / mixed highlights
+
+---
+
+## Deliverable
+
+1. implementation description
+2. before/after screenshots
+3. confirmation all previous highlight systems removed
+4. confirmation applied globally
+
+---
+
+## FINAL RULE
+
+If any letter that is NOT root appears in black → BUG
+If any root letter appears in red → BUG

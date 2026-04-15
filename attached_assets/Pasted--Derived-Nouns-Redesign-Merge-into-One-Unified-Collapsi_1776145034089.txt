@@ -1,0 +1,120 @@
+**Derived Nouns Redesign — Merge into One Unified Collapsible Section**
+
+## Problem
+
+The current derived-nouns area is fragmented and repetitive.
+
+Right now the UI separates related items into multiple repeated sections/cards:
+
+* verbal noun
+* active participle
+* passive participle
+* derived nouns
+* additional noun subtypes in separate areas
+
+This creates duplication and weakens the learning structure.
+
+---
+
+## Required redesign
+
+Create **ONE single collapsible section** that groups the major derived noun outputs together.
+
+### Section title
+
+Use a unified title such as:
+
+**المشتقات الأساسية — Core Derived Nouns**
+
+Do not split these into separate collapsible blocks anymore.
+
+---
+
+## Include these six items together in one section
+
+1. **المصدر**
+2. **اسم الفاعل**
+3. **اسم المفعول**
+4. **اسم الزمان**
+5. **اسم المكان**
+6. **اسم الآلة**
+
+These should appear together as one derivational family.
+
+---
+
+## Layout requirement
+
+Use **one unified comparison layout**, not scattered cards.
+
+Preferred options:
+
+* a single row/column grid
+* or a clean table-like structure
+
+### Best behavior
+
+Each category should have:
+
+* Arabic label
+* derived form
+* transliteration
+* short English gloss if available
+
+Make comparison easy at a glance.
+
+---
+
+## Important rule
+
+Do NOT repeat:
+
+* verbal noun / doer / recipient in one section
+  and then again under another derived-nouns section
+
+The data should appear once, in one logical place.
+
+---
+
+## Visual hierarchy
+
+### Primary
+
+* Arabic category label
+* Arabic derived word
+
+### Secondary
+
+* transliteration
+* English gloss
+
+### Tertiary
+
+* optional short note
+
+---
+
+## UX requirement
+
+The user should be able to open one section and immediately see the full derivational picture of the verb.
+
+It should feel like a morphology chart, not scattered widgets.
+
+---
+
+## Remove / simplify
+
+* repeated headings
+* duplicate noun cards
+* unnecessary separate collapsible blocks for closely related noun outputs
+
+---
+
+## Deliverable
+
+Provide:
+
+1. new unified section structure
+2. which duplicated sections were removed
+3. screenshot of the final six-item layout
+4. confirmation that content was reorganized, not lost

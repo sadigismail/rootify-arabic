@@ -1,0 +1,170 @@
+**Derived Nouns Section — Full-Width Layout & Readability Fix**
+
+## Scope
+
+UI-only improvement.
+Do NOT change data, logic, or generation.
+
+---
+
+## Problem
+
+The **Derived Nouns (الأسماء المشتقة)** section:
+
+* is too narrow (right-aligned cluster)
+* leaves large empty space on the left
+* cards are small and hard to read
+* does not match importance of the content
+
+This makes it feel like a secondary widget instead of a **core learning block**.
+
+---
+
+## Required Fix — Full-Width Expansion
+
+### 1. Section must span FULL container width
+
+* Remove right-side clustering
+* Expand section to use full horizontal space
+* Align with other main sections (like conjugation table)
+
+---
+
+### 2. Convert layout to responsive grid
+
+Instead of small stacked cards on the right:
+
+Use:
+
+* **Desktop:** 3–4 columns across full width
+* **Tablet:** 2 columns
+* **Mobile:** 1 column
+
+Cards should **fill the row evenly**
+
+---
+
+### 3. Increase card size and readability
+
+Each derived noun card must be:
+
+* wider
+* taller
+* with more internal padding
+
+### Improve hierarchy inside each card:
+
+#### Arabic word
+
+* large
+* bold
+* primary focus
+
+#### Transliteration
+
+* medium size
+* clearly readable (NOT faint)
+
+#### English meaning
+
+* readable secondary text
+* not tiny or washed out
+
+#### Type label (Exaggeration / Place / Instrument)
+
+* small but clear
+* consistent styling
+
+---
+
+### 4. Section structure (clear grouping)
+
+Group visually like this:
+
+#### Exaggeration Nouns (صيغ المبالغة)
+
+→ row/grid
+
+#### Place & Time Nouns (اسم المكان والزمان)
+
+→ row/grid
+
+#### Instrument Nouns (اسم الآلة)
+
+→ row/grid
+
+Each group:
+
+* full width
+* clear spacing between groups
+* visible section label
+
+---
+
+### 5. Remove “floating card” feeling
+
+Fix by:
+
+* equal spacing between cards
+* consistent alignment
+* no large empty margins on left
+* no compressed right column
+
+---
+
+### 6. Fix gray text inside cards
+
+Apply same contrast system:
+
+* Arabic = strong dark
+* transliteration = medium-dark gray
+* English = readable gray (not faint)
+* metadata = lighter but visible
+
+---
+
+### 7. Visual importance rule
+
+Derived Nouns section should feel:
+
+* equal importance to Verb Forms
+* not a side panel
+* not compressed
+* not decorative
+
+---
+
+## Result Expectation
+
+After fix:
+
+* section fills the page width
+* cards are large and readable
+* no empty space imbalance
+* Arabic is dominant
+* English supports clearly
+* layout feels intentional and structured
+
+---
+
+## Deliverable
+
+Provide:
+
+1. updated full-width grid layout
+2. improved card sizing
+3. spacing adjustments
+4. before/after screenshot
+5. confirmation no logic changed
+
+---
+
+## Constraint
+
+Do NOT:
+
+* reduce number of cards
+* hide data
+* change content
+
+ONLY improve layout, size, and readability.

@@ -1,0 +1,239 @@
+**General Arabic Highlight Rendering Fix — Preserve Word Unity**
+
+## Problem
+
+The same readability/rendering bug is appearing across multiple verb classes, not only hamzated verbs.
+
+Examples now include:
+
+* قرأ
+* عاد
+
+The current Teacher Mode highlighting is visually breaking the Arabic word into competing colored parts.
+
+Symptoms:
+
+* red + purple + black stack inside the same word
+* diacritics become visually crowded
+* the Arabic form no longer reads as one clean unit
+* annotation is overpowering the word itself
+
+This is a **general rendering-layer bug** in the highlight strategy.
+
+---
+
+## Scope
+
+UI-only rendering fix.
+
+Do NOT change:
+
+* morphology engine
+* conjugation logic
+* weak-verb rules
+* hamza rules
+* root extraction
+* search
+* pronoun order
+* generated Arabic output
+
+Only change how highlighting is visually applied.
+
+---
+
+# Core principle
+
+Arabic word readability comes first.
+
+The word must appear as:
+
+1. one readable Arabic unit
+2. with subtle instructional annotation
+
+Never the reverse.
+
+---
+
+# Required fix
+
+## 1. Stop per-letter visual competition
+
+Do not let multiple highlight styles compete inside the same word.
+
+If a form currently combines:
+
+* root highlighting
+* weak-letter highlighting
+* special-class highlighting
+* underline/doubling emphasis
+
+then reduce it to **one primary visual annotation system per word**.
+
+### Rule:
+
+Within a single Arabic form, do NOT stack multiple strong highlight styles on multiple letters if it harms readability.
+
+---
+
+## 2. Move from “letter painting” to “word-safe annotation”
+
+Current highlighting is too letter-fragmented.
+
+Instead:
+
+* preserve the base word in a stable dark text color
+* apply lighter, softer annotation only where it does not visually break the word
+* prefer subtle support over letter-by-letter color contrast
+
+### Acceptable strategies:
+
+* softer tint only
+* one reduced emphasis layer
+* very subtle marking on one morphological target only
+
+### Avoid:
+
+* strong red root letters plus purple weak letters in the same short word
+* multiple saturated colors inside compact forms
+* styling that makes diacritics look crowded
+
+---
+
+## 3. One highlight priority per word
+
+For any displayed Arabic form, choose only one dominant instructional emphasis:
+
+Priority order:
+
+1. readability of the full word
+2. verb-class-specific teaching value
+3. root visibility
+4. extra decorative/secondary emphasis
+
+If multiple highlight rules fire, suppress the lower-priority ones.
+
+---
+
+## 4. Special handling for compact words
+
+For short or visually dense forms such as:
+
+* عاد
+* عُدتُ
+* قرأ
+* أعود
+* يُقرأ
+
+use a simplified highlight mode automatically.
+
+### Simplified mode:
+
+* one soft highlight only
+* no competing color layers
+* no underline if it crowds the script
+* keep the Arabic word visually intact
+
+---
+
+## 5. Hollow verbs must be simplified too
+
+The bug is now visible with hollow verbs like **عاد**.
+
+For hollow verbs:
+
+* do not aggressively highlight the weak middle radical if it makes the word noisy
+* do not combine purple weak-letter emphasis with strong root coloring in the same short form
+* preserve readability first
+
+---
+
+## 6. Hamzated verbs remain simplified
+
+Keep the earlier hamzated simplification approach, but fold it into the new general rule system.
+
+Do not maintain isolated special hacks if a cleaner general rendering strategy can handle:
+
+* hamzated verbs
+* hollow verbs
+* other visually dense forms
+
+---
+
+## 7. Student vs Teacher Mode behavior
+
+### Student Mode
+
+* no internal multi-letter highlighting
+* minimal or near-zero annotation inside the word
+
+### Teacher Mode
+
+* keep instructional highlighting
+* but limited to a single soft emphasis strategy per word
+* never allow the word to look broken into colored fragments
+
+---
+
+## 8. Suggested implementation direction
+
+Refactor highlight rendering so the UI decides:
+
+* Is this word visually dense?
+* Is this a hamzated or hollow or otherwise compact form?
+* Are multiple highlight layers about to collide?
+
+If yes:
+
+* switch to simplified highlight mode automatically
+
+### Good model:
+
+`full highlight` for visually safe words
+`soft highlight` for dense/short words
+`minimal highlight` for student mode
+
+---
+
+## 9. Test cases
+
+Specifically test rendering with:
+
+* قرأ
+* أقرأ
+* يقرأ
+* عاد
+* أعود
+* عُدتُ
+* يقول
+* دعا if relevant
+* any short compact weak-verb form
+
+### Success condition:
+
+The Arabic word must be immediately readable as one unit.
+
+---
+
+## 10. Visual success criteria
+
+After this fix:
+
+* Arabic forms read cleanly first
+* highlight feels instructional, not decorative
+* no red/purple/black competition inside short words
+* compact weak and hamzated forms are no longer visually broken
+* Teacher Mode remains useful without becoming noisy
+
+---
+
+## Deliverable
+
+Provide:
+
+1. summary of the new highlight-priority system
+2. explanation of simplified mode for dense/short words
+3. before/after screenshots using:
+
+   * قرأ
+   * عاد
+4. confirmation that no morphology or generation logic changed

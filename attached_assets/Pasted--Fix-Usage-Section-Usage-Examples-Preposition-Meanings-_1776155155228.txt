@@ -1,0 +1,150 @@
+**Fix Usage Section (Usage & Examples + Preposition Meanings)**
+
+## Goal
+
+Make these sections:
+
+* cleaner
+* larger font
+* properly collapsible
+* less cluttered
+* consistent with the rest of the UI
+
+---
+
+## 1. Increase font size (IMPORTANT)
+
+Apply:
+
+### Section headers:
+
+* Increase size by ~20–30%
+* Make slightly bold
+
+### Arabic example sentences:
+
+* Make clearly larger (they are currently too small)
+* Should be one of the most visible elements
+
+### English translations:
+
+* Slightly smaller than Arabic, but NOT tiny
+* Increase readability (no faint gray)
+
+---
+
+## 2. Add clear collapsible arrows
+
+For:
+
+* Preposition Meanings
+* Generate Practice
+* Usage & Examples
+
+### Rules:
+
+* Add a visible chevron (▼ / ▶)
+* Place it consistently (left or right — but same everywhere)
+* Rotate on expand/collapse
+* Make it larger and clearly clickable
+
+---
+
+## 3. Default state behavior
+
+### Collapse these by default:
+
+* Preposition Meanings
+* Usage & Examples
+
+### Keep:
+
+* Generate Practice → optional (can stay open)
+
+---
+
+## 4. Hide "الاستخدامات / Common Patterns" initially
+
+Inside **Usage & Examples**:
+
+* Hide this section by default:
+
+  * COMMON PATTERNS (أنماط الاستخدام / الاستخدامات)
+
+### Behavior:
+
+* Only show it AFTER user expands main section
+* Or optionally:
+
+  * make it a nested collapsible
+
+---
+
+## 5. Reduce empty space
+
+Fix large blank areas:
+
+* Remove excessive padding inside collapsed sections
+* Reduce vertical gaps between sections
+* Make headers sit closer together
+
+---
+
+## 6. Align content properly
+
+Right now content is too right-heavy.
+
+Fix:
+
+* Keep Arabic right-aligned
+* But center the overall block visually
+* Ensure spacing from edges is balanced
+
+---
+
+## 7. Improve hierarchy
+
+Inside Usage & Examples:
+
+Order should feel like:
+
+1. Title (large)
+2. Level labels (small but visible)
+3. Arabic sentence (PRIMARY focus — biggest)
+4. English translation (secondary)
+
+---
+
+## 8. Keep styling consistent
+
+Match:
+
+* colors
+* borders
+* shadows
+* fonts
+
+with the rest of the app
+
+---
+
+## Final expected result
+
+After fix:
+
+* text is readable and strong
+* arrows clearly show collapsible behavior
+* sections start clean (collapsed)
+* no clutter
+* no tiny fonts
+* professional teaching tool feel
+
+---
+
+## Deliverable
+
+Provide:
+
+1. screenshot (collapsed view)
+2. screenshot (expanded Usage & Examples)
+3. confirm font sizes updated

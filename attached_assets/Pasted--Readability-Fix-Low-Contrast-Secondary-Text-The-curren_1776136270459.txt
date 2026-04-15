@@ -1,0 +1,205 @@
+**Readability Fix — Low-Contrast Secondary Text**
+
+The current UI is still using too many very light gray text styles. This makes important support text hard to read.
+
+Implement a **contrast/readability pass** across the full Rootify UI.
+
+## Goal
+
+Increase readability of all secondary/supporting text without changing layout, spacing, ordering, or logic.
+
+---
+
+## Do not change
+
+* morphology engine
+* search logic
+* conjugation logic
+* pronoun order
+* Student/Teacher mode behavior
+* page structure/layout
+
+This is a **visual contrast pass only**.
+
+---
+
+## Main problem to fix
+
+Too many text elements are using gray tones that are too faint against the background.
+
+This especially affects:
+
+* transliteration under Arabic words
+* English glosses and helper labels
+* small notes in cards
+* conjugation cell sublabels
+* section subtitles
+* teacher-note microtext
+* small column/header helper text
+
+---
+
+## Required fix
+
+Create a clearer text hierarchy with stronger contrast.
+
+### 1. Primary text
+
+Keep primary text strong and dark:
+
+* Arabic headwords
+* main English meanings
+* section titles
+* major labels
+
+No reduction here.
+
+### 2. Secondary text
+
+Increase contrast noticeably for all secondary text.
+Secondary text should still look secondary, but must be easy to read without strain.
+
+Apply this to:
+
+* transliteration
+* English support text
+* card helper text
+* example translations
+* conjugation support labels
+* small metadata text
+
+### 3. Tertiary text
+
+Only the least important microtext may remain lighter, but it must still be readable.
+Do not let tertiary text fade into the background.
+
+---
+
+## Specific UI targets
+
+### A. Conjugation table
+
+Improve readability of:
+
+* transliteration in cells
+* English column labels
+* small tense/helper text
+* group labels like 1st person / 2nd person / 3rd person
+
+Rules:
+
+* transliteration must be darker than it is now
+* English labels must be clearly readable at normal zoom
+* do not keep pale gray on off-white backgrounds
+
+### B. Cards (participles / masdar / verb family)
+
+Improve readability of:
+
+* transliteration lines
+* English helper labels
+* small descriptive notes
+
+Rules:
+
+* Arabic remains dominant
+* English support text must not disappear visually
+
+### C. Section headers and subtitles
+
+Improve readability of:
+
+* English subtitle lines
+* Arabic small subtitle lines
+* any faded helper captions near titles
+
+Rules:
+
+* subtitles may be lighter than titles, but not faint
+
+### D. Teacher mode info
+
+Improve readability of:
+
+* teaching note text
+* class descriptions
+* small metadata/badge text
+
+Rules:
+
+* teacher mode can be information-rich, but it must stay readable
+
+---
+
+## Typography rule
+
+Use a clean 3-level contrast hierarchy only:
+
+1. **Primary**
+
+   * dark, strong, easy to scan
+
+2. **Secondary**
+
+   * clearly readable, medium contrast
+
+3. **Tertiary**
+
+   * softer, but still readable
+
+Do not create many shades of gray that are too close together.
+
+---
+
+## Important visual rule
+
+Prefer:
+
+* fewer gray shades
+* stronger consistency
+* better contrast
+
+Avoid:
+
+* ultra-light gray text
+* text that blends into card backgrounds
+* tiny low-contrast captions
+
+---
+
+## Additional adjustment
+
+Where text is very small, do not rely only on color contrast.
+Also slightly improve readability by using one or both:
+
+* a small font-size increase
+* slightly stronger font-weight
+
+Especially for:
+
+* transliteration
+* mini labels
+* subtitle/helper text
+
+---
+
+## What success looks like
+
+After this pass:
+
+* transliteration is easy to read
+* support English is readable at a glance
+* section subtitles no longer disappear
+* teacher notes are readable without zooming
+* page still feels clean, but no longer washed out
+
+---
+
+## Deliverable
+
+Provide:
+
+1. list of text styles updated
+2. which components were affected
+3. before/after readability summary
+4. confirmation that layout and logic were not changed

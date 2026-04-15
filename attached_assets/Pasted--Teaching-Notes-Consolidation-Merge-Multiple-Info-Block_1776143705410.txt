@@ -1,0 +1,177 @@
+**Teaching Notes Consolidation — Merge Multiple Info Blocks into One Bilingual Card**
+
+## Scope
+
+UI-only improvement.
+Do NOT change:
+
+* logic
+* data
+* morphology
+* content text (keep all info)
+
+Only restructure presentation.
+
+---
+
+## Problem
+
+Currently, the UI shows multiple stacked beige info boxes:
+
+1. Hollow verb explanation (English)
+2. Teaching notes (Arabic)
+3. Repeated note (English again)
+4. Transitivity note
+
+Issues:
+
+* redundant repetition
+* fragmented information
+* excessive vertical space
+* weak visual hierarchy
+
+---
+
+## Required Fix — Single Unified Card
+
+### Replace ALL stacked info blocks with:
+
+👉 ONE unified rectangular **Teaching Card**
+
+---
+
+## Card Structure (Bilingual, Clean)
+
+### Header (top-right for Arabic UI)
+
+**Arabic (primary):**
+ملاحظات تعليمية
+
+**English (secondary):**
+Teaching Notes
+
+---
+
+### Body Layout
+
+Split into **2 clear sections inside the same card**:
+
+---
+
+### Section 1 — Concept Explanation
+
+#### Arabic (primary)
+
+الفعل الأجوف: الحرف الأوسط (عين الفعل) حرف علة (واو أو ياء) وقد يتغير أو يُحذف في بعض الصيغ.
+
+#### English (secondary)
+
+Hollow verb: the middle radical is a weak letter (w/y) that may change or drop in certain forms.
+
+---
+
+### Section 2 — Key Notes / Rules
+
+Use bullet points:
+
+#### Arabic
+
+• انتبه لحذف حرف العلة في المجزوم والأمر
+• الفعل لازم — لا يحتاج إلى مفعول به
+
+#### English
+
+• Watch for weak-letter deletion in jussive and imperative
+• Intransitive verb — does not take a direct object
+
+---
+
+## Visual Rules
+
+### 1. Single Card Only
+
+* Remove ALL duplicate beige blocks
+* No repetition outside the card
+
+---
+
+### 2. Strong Typography
+
+#### Arabic
+
+* larger
+* darker
+* primary focus
+
+#### English
+
+* slightly smaller
+* medium contrast
+* clearly readable (NOT faint)
+
+---
+
+### 3. Layout
+
+* full-width card
+* clean padding (comfortable spacing)
+* clear separation between sections
+* no cramped lines
+
+---
+
+### 4. Color
+
+* keep soft beige background
+* slightly increase contrast for text
+* remove washed-out gray text
+
+---
+
+### 5. Icons (optional but controlled)
+
+You may include:
+
+* small light icon (💡 or similar)
+
+BUT:
+
+* do not overuse icons
+* keep academic tone
+
+---
+
+## Behavior
+
+### Student Mode
+
+* show only 1–2 key bullet points
+
+### Teacher Mode
+
+* show full explanation + all bullets
+
+---
+
+## Result Expectation
+
+After fix:
+
+* one clean, strong teaching block
+* no repetition
+* easier to scan
+* less vertical clutter
+* clearer Arabic → English relationship
+* more professional academic feel
+
+---
+
+## Deliverable
+
+Provide:
+
+1. merged card implementation
+2. removed duplicate blocks
+3. improved typography
+4. before/after screenshot
+5. confirmation no content lost

@@ -1,0 +1,409 @@
+**Phase 11.3 — Synonyms + Semantic Grouping (English Search Upgrade)**
+
+Build the next layer on top of Phase 11.2 English-to-Arabic search:
+
+1. **English synonym expansion**
+2. **Semantic grouping of Arabic results**
+3. **Safer, learner-friendly result presentation**
+
+This must remain a **lookup/ranking/UI feature** only. Do **not** modify the morphology engine or conjugation logic.
+
+---
+
+# Goal
+
+When a user searches in English, the system should not only return literal gloss matches, but also intelligently group related Arabic verbs by meaning.
+
+Example:
+
+Query:
+`see`
+
+Desired grouped behavior:
+
+* **Most common / basic**
+
+  * رَأَى — to see
+* **watch / observe**
+
+  * شَاهَدَ — to watch
+  * رَاقَبَ — to observe / monitor
+* **look at**
+
+  * نَظَرَ — to look at
+
+This makes Rootify feel more like a real lexical learning system, not just a one-word matcher.
+
+---
+
+# Strict architecture rule
+
+Keep this feature outside the morphology engine.
+
+System layers must remain:
+
+1. **Morphology engine**
+
+   * conjugation
+   * verb class logic
+   * passive/active/forms
+   * untouched
+
+2. **Lexicon / reverse index**
+
+   * Arabic lemmas
+   * English glosses
+   * synonym links
+   * semantic grouping metadata
+
+3. **Search/ranking layer**
+
+   * English normalization
+   * synonym expansion
+   * result scoring
+   * group assembly
+
+4. **UI**
+
+   * grouped result display
+   * safe learner selection before conjugation
+
+Do not collapse these layers together.
+
+---
+
+# What to build
+
+## 1. Add English synonym expansion
+
+Create a conservative synonym map for search expansion.
+
+Examples:
+
+```ts
+help -> ["assist", "support", "aid"]
+see -> ["watch", "observe", "look", "view"]
+return -> ["come back", "go back"]
+write -> ["record", "note", "document"]
+go -> ["leave", "depart", "head"]
+speak -> ["talk", "say", "converse"]
+```
+
+### Rules:
+
+* Keep the list small and curated
+* Prefer common educational meanings
+* Do NOT pull in broad or noisy semantic matches
+* Do NOT use uncontrolled AI generation for synonyms at runtime
+
+This should be a fixed internal map or lexicon extension.
+
+---
+
+## 2. Add semantic grouping metadata to entries
+
+Extend the reverse lexicon entries so Arabic verbs can be grouped by nuance.
+
+Suggested shape:
+
+```ts
+type ReverseVerbEntry = {
+  lemma: string;
+  lemmaPlain: string;
+  glosses: string[];
+  root?: string;
+  form?: string;
+  bab?: string;
+  frequency?: number;
+  semanticGroup?: string;     // e.g. "basic seeing", "watching", "looking"
+  semanticPriority?: number;  // lower = more central/common
+  tags?: string[];
+}
+```
+
+Examples:
+
+* رَأَى
+
+  * semanticGroup: "basic seeing"
+* شَاهَدَ
+
+  * semanticGroup: "watching"
+* نَظَرَ
+
+  * semanticGroup: "looking"
+* رَاقَبَ
+
+  * semanticGroup: "observing"
+
+---
+
+## 3. Search expansion flow
+
+When the user enters an English query:
+
+### Step order:
+
+1. Normalize the user query
+2. Search exact gloss matches
+3. Search normalized gloss matches
+4. Expand through synonym map
+5. Collect candidate Arabic verbs
+6. Rank candidates
+7. Group them by semanticGroup
+8. Return grouped result payload
+
+Exact matches must still outrank synonym-only matches.
+
+---
+
+## 4. Ranking rules
+
+Use strict ranking priority:
+
+1. Exact normalized gloss match
+2. Direct gloss match on common verb
+3. Synonym-expanded match
+4. Form I before derived forms when equally close
+5. Higher frequency before lower frequency
+6. Central/basic meaning before narrower nuance
+
+### Example:
+
+Query: `help`
+
+Preferred order:
+
+* basic/common:
+
+  * سَاعَدَ
+  * أَعَانَ
+* more literary or context-specific:
+
+  * نَصَرَ
+
+Do not let a literary or less common verb outrank the most learner-useful option unless the gloss match is clearly better.
+
+---
+
+## 5. Grouped payload format
+
+Return grouped results, not only a flat list.
+
+Suggested format:
+
+```ts
+type EnglishGroupedSearchResult = {
+  query: string;
+  normalizedQuery: string;
+  expandedQueries: string[];
+  groups: Array<{
+    label: string;   // e.g. "Most common", "Watching", "Looking", "Related meanings"
+    priority: number;
+    results: Array<{
+      lemma: string;
+      lemmaPlain: string;
+      glosses: string[];
+      root?: string;
+      form?: string;
+      bab?: string;
+      score: number;
+      frequency?: number;
+      matchType: "exact" | "normalized" | "synonym";
+    }>;
+  }>;
+}
+```
+
+---
+
+## 6. UI presentation rules
+
+Display grouped results clearly.
+
+### Preferred presentation:
+
+* Group title
+* Arabic lemma
+* short English gloss
+* optional root/form
+* button: **Generate Conjugation**
+
+Example:
+
+**Most common**
+
+* كَتَبَ — write
+* دَوَّنَ — note down
+
+**Recording / documenting**
+
+* سَجَّلَ — record / register
+* وَثَّقَ — document
+
+### Rules:
+
+* Keep Arabic visually dominant
+* Keep group titles small but clear
+* Do not auto-generate conjugation unless there is one overwhelmingly obvious result
+* Prefer safe selection by the user
+
+---
+
+## 7. Safe grouping labels
+
+Use learner-friendly labels, not technical NLP labels.
+
+Good:
+
+* Most common
+* Looking
+* Watching
+* Returning
+* Speaking to others
+* Formal / written use
+* Related meanings
+
+Avoid:
+
+* semantic cluster A
+* lexical node
+* embedding class
+
+---
+
+## 8. No-result behavior
+
+If no exact or synonym-expanded results exist:
+
+* return clean empty result
+* optionally include nearby suggestions only if reliable
+
+Do NOT:
+
+* hallucinate a verb
+* invent semantic groups
+* route into Arabic morphology by mistake
+
+---
+
+## 9. Do not break Arabic flow
+
+Arabic input must still behave exactly as before.
+
+Examples:
+
+* كتب
+* رأى
+* دعا
+
+must continue using current Arabic lookup logic with no regression.
+
+This phase must not alter:
+
+* conjugation
+* passive handling
+* defective handling
+* pronoun ordering
+* verb-family logic
+
+---
+
+## 10. Minimum scope for first pass
+
+For this phase, do NOT try to solve all of English semantics.
+
+Only support:
+
+* a small curated synonym map
+* clear semantic grouping for common learner verbs
+* grouped display of results
+
+That is enough for Phase 11.3.
+
+---
+
+## 11. Suggested starter domains
+
+Prioritize common educational verb meanings first:
+
+* go
+* come
+* return
+* see
+* watch
+* look
+* write
+* read
+* speak
+* say
+* tell
+* help
+* support
+* know
+* learn
+* teach
+* eat
+* drink
+* make
+* use
+* open
+* close
+* begin
+* finish
+
+---
+
+## 12. Required tests
+
+Add tests for:
+
+### Synonym expansion
+
+* assist -> includes help-family verbs
+* watch -> includes شَاهَدَ and/or related seeing verbs
+* come back -> includes return-family verbs
+* document -> includes write/record family if supported
+
+### Grouping
+
+* see -> grouped into meaningful categories
+* write -> common/basic group appears first
+* help -> most learner-useful verbs rank above literary ones
+
+### Safety
+
+* nonsense query returns clean empty result
+* Arabic input still follows Arabic flow unchanged
+
+### Ranking
+
+* exact match beats synonym-only match
+* common verb beats rarer alternative when equally close
+
+---
+
+## 13. Suggested function names
+
+Use clear names such as:
+
+* `expandEnglishQueryWithSynonyms(query)`
+* `collectEnglishSearchCandidates(query, index)`
+* `groupEnglishSearchResults(results)`
+* `rankGroupedEnglishResults(results, query)`
+* `buildGroupedEnglishSearchPayload(query, results)`
+
+---
+
+## 14. Deliverable
+
+At the end, provide:
+
+1. files changed
+2. synonym map strategy
+3. grouped payload example
+4. example grouped queries (see, write, help, return)
+5. tests added
+6. confirmation no regression to Arabic flow
+
+Do not refactor the morphology engine for this phase.

@@ -1,0 +1,213 @@
+**Phase 11.6c — Visual Polish & Language Hierarchy (Final UI Refinement)**
+
+## Goal
+
+Refine the UI so it feels:
+
+* clean
+* calm
+* professional
+* Arabic-dominant
+
+This is NOT a feature phase.
+This is a **visual hierarchy + typography + contrast correction phase**.
+
+---
+
+## Do NOT change
+
+* any logic
+* any data
+* any layout structure
+* any components
+* any feature behavior
+
+This is a **pure visual polish pass (CSS + minor styling only)**
+
+---
+
+# 1. Enforce Language Hierarchy (CRITICAL)
+
+Arabic must always dominate visually.
+
+## Apply globally:
+
+### Arabic text
+
+* darker color (near black)
+* slightly heavier weight (500–600)
+* primary visual focus
+
+### English text
+
+* clearly lighter than Arabic
+* never same weight as Arabic
+* never same size as Arabic (except titles if needed)
+
+---
+
+## Fix specific issues:
+
+### A. Conjugation table
+
+* Arabic forms → strong and clear
+* transliteration → lighter and smaller
+* English column → lighter than transliteration
+
+---
+
+### B. Cards (verb forms, masdar, participles)
+
+* Arabic word = dominant
+* transliteration = secondary
+* English labels = tertiary
+
+---
+
+### C. Examples section
+
+* Arabic sentence = strong
+* English translation = clearly lighter
+* reduce competition
+
+---
+
+# 2. Reduce Gray Palette (VERY IMPORTANT)
+
+Currently too many gray tones are used.
+
+## Replace with ONLY 3 levels:
+
+### Level 1 — Primary
+
+* for Arabic + main labels
+* dark
+
+### Level 2 — Secondary
+
+* for transliteration + English support
+* medium gray
+
+### Level 3 — Tertiary
+
+* for metadata, helper text
+* lighter gray but still readable
+
+---
+
+## Rule:
+
+No additional gray shades allowed.
+
+---
+
+# 3. Fix Highlight Dominance
+
+Highlighting must NOT compete with text.
+
+## Apply:
+
+* reduce saturation further
+* reduce contrast vs base text
+* remove any "bright red" feel
+
+### New rule:
+
+Highlight should feel like:
+→ “annotation”
+NOT
+→ “foreground text”
+
+---
+
+## Special rule:
+
+If highlighting breaks readability → reduce it further
+
+---
+
+# 4. Typography Consistency
+
+Fix mismatch between Arabic and English fonts.
+
+## Requirements:
+
+* Arabic font: clean, modern, readable (no distortion)
+* English font: must visually match tone (not too thin)
+
+---
+
+## Fix:
+
+* avoid thin English fonts next to strong Arabic
+* slightly increase English weight if needed (but still lighter than Arabic)
+
+---
+
+# 5. Micro-text Fix (critical)
+
+Improve readability of small text:
+
+Apply to:
+
+* transliteration
+* table sublabels
+* subtitles
+* helper lines
+
+## Adjust:
+
+* slight size increase (very small bump)
+* slightly darker color
+* better spacing
+
+---
+
+# 6. Spacing & Breathing
+
+Do NOT change layout — only improve clarity:
+
+* ensure enough vertical spacing between:
+
+  * Arabic
+  * transliteration
+  * English
+
+Avoid stacking text too tightly.
+
+---
+
+# 7. Visual Calm Rule
+
+Final UI must feel:
+
+* calm
+* readable
+* not busy
+* not colorful
+* not washed out
+
+---
+
+## Success Criteria
+
+After this pass:
+
+* Arabic is immediately dominant
+* English supports, not competes
+* no washed-out gray text
+* no color noise
+* conjugation tables are easy to scan
+* long sessions feel comfortable
+
+---
+
+## Deliverable
+
+Provide:
+
+1. final color system (3 levels only)
+2. typography adjustments
+3. highlight adjustments
+4. before/after comparison
+5. confirmation no logic or layout was changed
