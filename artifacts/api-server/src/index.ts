@@ -14,7 +14,9 @@ const port = Number(rawPort);
 if (Number.isNaN(port) || port <= 0) {
   throw new Error(`Invalid PORT value: "${rawPort}"`);
 }
-
+app.get("/", (req, res) => {
+  res.send("Rootify Arabic API is running 🚀");
+});
 app.listen(port, (err) => {
   if (err) {
     logger.error({ err }, "Error listening on port");
