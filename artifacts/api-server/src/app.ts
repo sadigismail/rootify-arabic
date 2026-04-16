@@ -5,7 +5,9 @@ import router from "./routes";
 import { logger } from "./lib/logger";
 
 const app: Express = express();
-
+app.get("/", (req, res) => {
+  res.send("Rootify Arabic API is running 🚀");
+});
 app.use(
   pinoHttp({
     logger,
