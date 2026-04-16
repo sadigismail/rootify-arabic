@@ -6,7 +6,16 @@ import { logger } from "./lib/logger";
 
 const app: Express = express();
 app.get("/", (req, res) => {
-  res.send("Rootify Arabic API is running 🚀");
+  res.json({
+    name: "Rootify Arabic API",
+    status: "running",
+    version: "1.0.0",
+    endpoints: {
+      health: "/health",
+      api: "/api"
+    }
+  });
+});
 });
 app.use(
   pinoHttp({
