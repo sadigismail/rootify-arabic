@@ -16,7 +16,6 @@ app.get("/", (req, res) => {
     }
   });
 });
-});
 app.use(
   pinoHttp({
     logger,
