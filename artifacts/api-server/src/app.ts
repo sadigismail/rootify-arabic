@@ -5,17 +5,7 @@ import router from "./routes";
 import { logger } from "./lib/logger";
 
 const app: Express = express();
-app.get("/", (req, res) => {
-  res.json({
-    name: "Rootify Arabic API",
-    status: "running",
-    version: "1.0.0",
-    endpoints: {
-      health: "/health",
-      api: "/api"
-    }
-  });
-});
+app.get("/", (_req, res) => res.redirect("/api/smartroot"));
 app.use(
   pinoHttp({
     logger,
